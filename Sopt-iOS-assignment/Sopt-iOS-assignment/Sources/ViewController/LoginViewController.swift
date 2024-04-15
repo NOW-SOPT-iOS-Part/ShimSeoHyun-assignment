@@ -1,7 +1,29 @@
 import UIKit
 import SnapKit
 
-extension UITextField {
+private extension UIStackView {
+    func customLoginIconButtonCase(){
+        axis = .horizontal
+        spacing = 10
+        layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 12)
+        isLayoutMarginsRelativeArrangement = true
+
+        snp.makeConstraints{make in
+            make.height.equalTo(52)
+            make.width.lessThanOrEqualTo(80)
+        }
+    
+    }
+}
+
+private extension UIButton {
+    func customIconButton(icon: String,size: Int){
+        setImage(UIImage(named:icon), for: .normal)
+        frame = CGRect(x: 0, y: 0, width: size, height: size)
+    }
+}
+
+private extension UITextField {
     func placeholderColor(color: UIColor){
         guard let string = self.placeholder else{
             return
@@ -32,10 +54,18 @@ extension UITextField {
     }
 }
 
+
+
 final class LoginViewController: UIViewController, UITextFieldDelegate {
+    
     // 텍스트 필드가 바뀔 때
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        print("\(textField.placeholder ?? "") 텍스트 변경: \(textField.text ?? "")")
+        if(textField == idTextField){
+            idClearButton.isHidden = idTextField.text?.isEmpty ?? true
+        }
+        else if(textField == pwTextField){
+            pwClearButton.isHidden = pwTextField.text?.isEmpty ?? true
+        }
     }
     
     // 텍스트 필드가 포커싱 받을 때
@@ -48,6 +78,23 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
             textField.isEndEditing()
     }
     
+    // TextField clear 하는 함수
+    @objc private func clearTextField(_ button: UIButton){
+        if button == idClearButton {
+            idTextField.text = ""
+        } else if button == pwClearButton {
+            pwTextField.text = ""
+        }
+    }
+    
+    // isSecureTextEntry 전환하는 함수
+    @objc private func pwButtonToggle(_ sender: UIButton) {
+        pwTextField.isSecureTextEntry.toggle()
+        
+        let icon = pwTextField.isSecureTextEntry ? "icon_pw_close" : "icon_pw_open"
+        pwButton.setImage(UIImage(named: icon), for: .normal)
+    }
+    
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -55,19 +102,73 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont(name: "PretendardVariable-Medium", size: 23)
+        
         return label
     }()
     
+    // -----------------------------
+    // ------- ID Text Field -------
+    // -----------------------------
+    
+    private let idClearButton : UIButton = {
+        let button = UIButton()
+        button.customIconButton(icon: "icon_clear", size: 20)
+        button.isHidden = true
+        
+        return button
+    }()
 
     private lazy var idTextField: UITextField = {
         let textField = UITextField()
         textField.customLoginTextField(placeholderText: "아이디")
+        
+        let buttonCase = UIStackView()
+        buttonCase.customLoginIconButtonCase()
+        
+        buttonCase.addArrangedSubview(idClearButton)
+        
+        
+        textField.rightView = buttonCase
+        textField.rightViewMode = .always
+        
         return textField
     }()
     
-    private lazy var passwordTextField: UITextField = {
+    
+    // -----------------------------
+    // ------- PW Text Field -------
+    // -----------------------------
+    
+    private let pwClearButton : UIButton = {
+        let button = UIButton()
+        button.customIconButton(icon: "icon_clear", size: 20)
+        button.isHidden = true
+        
+        return button
+    }()
+    
+    private let pwButton : UIButton = {
+        let button = UIButton()
+        button.customIconButton(icon: "icon_pw_close", size: 20)
+        
+        return button
+    }()
+    
+    private lazy var pwTextField: UITextField = {
         let textField = UITextField()
         textField.customLoginTextField(placeholderText: "비밀번호")
+        textField.isSecureTextEntry = true
+        
+        let buttonCase = UIStackView()
+        buttonCase.customLoginIconButtonCase()
+
+        buttonCase.addArrangedSubview(pwClearButton)
+        buttonCase.addArrangedSubview(pwButton)
+
+
+        textField.rightView = buttonCase
+        textField.rightViewMode = .always
+        
         return textField
     }()
     
@@ -85,7 +186,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     func setDelegate() {
         //UITextFieldDelegate프로토콜을 채택한 LoginViewController가 self
         idTextField.delegate = self
-        passwordTextField.delegate = self
+        pwTextField.delegate = self
     }
 
     
@@ -95,10 +196,14 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         
         setDelegate()
         setLayout()
+        
+        idClearButton.addTarget(self, action: #selector(clearTextField(_:)), for: .touchUpInside)
+        pwClearButton.addTarget(self, action: #selector(clearTextField(_:)), for: .touchUpInside)
+        pwButton.addTarget(self, action: #selector(pwButtonToggle(_:)), for: .touchUpInside)
     }
     
     private func setLayout() {
-        [titleLabel, idTextField, passwordTextField, loginButton].forEach {
+        [titleLabel, idTextField, pwTextField, loginButton].forEach {
             self.view.addSubview($0)
         }
 
@@ -113,14 +218,14 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
             make.height.equalTo(52)
         }
         
-        passwordTextField.snp.makeConstraints { make in
+        pwTextField.snp.makeConstraints { make in
             make.top.equalTo(idTextField.snp.bottom).offset(7)
             make.left.right.equalTo(idTextField)
             make.height.equalTo(52)
         }
         
         loginButton.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset(21)
+            make.top.equalTo(pwTextField.snp.bottom).offset(21)
             make.left.right.equalTo(idTextField)
             make.height.equalTo(58)
         }
