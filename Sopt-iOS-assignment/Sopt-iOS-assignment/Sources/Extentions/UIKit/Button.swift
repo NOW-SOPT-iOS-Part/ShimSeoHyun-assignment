@@ -6,6 +6,15 @@ extension UIButton {
         frame = CGRect(x: 0, y: 0, width: size, height: size)
     }
     
+    func customMiddleButton (title : String){
+        layer.cornerRadius = 3
+        setTitle(title, for: .normal)
+        titleLabel?.font = UIFont(name: "PretendardVariable-Bold", size: 14)
+        
+        snp.makeConstraints{ make in
+            make.height.equalTo(58)
+        }
+    }
     func customEnabledButton(bgColor: String, fontColor: String){
         backgroundColor = UIColor(named: bgColor)
         setTitleColor(UIColor(named:fontColor), for: .normal)

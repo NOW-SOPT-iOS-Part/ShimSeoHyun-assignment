@@ -12,35 +12,12 @@ private extension UIStackView {
             make.height.equalTo(52)
             make.width.lessThanOrEqualTo(80)
         }
-    
     }
 }
 
 
 
-private extension UITextField {
-    func customLoginTextField(placeholderText:String? = nil){
-        backgroundColor = .grey4
-        layer.cornerRadius = 3
-        layer.borderColor = UIColor(named: "grey2")?.cgColor
-        leftView = UIView(frame: CGRect(x: 0, y: 0, width: 22, height: 0))
-        leftViewMode = .always
-        
-        font = UIFont(name: "PretendardVariable-SemiBold", size: 15)
-        textColor = .white
-        
-        placeholder = placeholderText
-        placeholderColor(color: .grey2)
-    }
-    
-    func isBeginEditing (){
-        layer.borderWidth = 1
-        
-    }
-    func isEndEditing (){
-        layer.borderWidth = 0
-    }
-}
+
 
 
 
@@ -112,7 +89,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
 
     private lazy var idTextField: UITextField = {
         let textField = UITextField()
-        textField.customLoginTextField(placeholderText: "아이디")
+        textField.customTextField(placeholderText: "아이디")
         
         let buttonCase = UIStackView()
         buttonCase.customLoginIconButtonCase()
@@ -146,7 +123,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private lazy var pwTextField: UITextField = {
         let textField = UITextField()
-        textField.customLoginTextField(placeholderText: "비밀번호")
+        textField.customTextField(placeholderText: "비밀번호")
         textField.isSecureTextEntry = true
         
         let buttonCase = UIStackView()
@@ -165,30 +142,36 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // ------- Login Button -------
     
-
-    
     @objc private func loginButtonDidTap(){
         let welcomeViewController = WelcomeViewController()
         welcomeViewController.setId(id: idTextField.text)
         self.navigationController?.pushViewController(welcomeViewController, animated: true)
         
     }
-    
-    private lazy var loginButton: UIButton = {
+
+    private let loginButton: UIButton = {
         let button = UIButton()
-        
-        button.layer.cornerRadius = 3
-        button.setTitle("로그인하기", for: .normal)
-        button.titleLabel?.font = UIFont(name: "PretendardVariable-Bold", size: 14)
-        
-        
-
+        button.customMiddleButton(title: "로그인하기")
         button.customDisabledButton(borderColor: "grey4", fontColor: "grey2")
-
+        
         return button
     }()
     
-
+    
+    // ---- 닉네임 버튼 ----
+    @objc private func nicknameButtonDidTap(){
+        let nicknameViewController = NicknameViewController()
+        nicknameViewController.modalPresentationStyle = .formSheet
+        self.present(nicknameViewController, animated: true)
+    }
+    
+    private let nicknameButton : UIButton = {
+        let button = UIButton()
+        button.customMiddleButton(title: "닉네임")
+        button.customEnabledButton(bgColor: "blue", fontColor: "white")
+        return button
+    }()
+    
 
     
     override func viewDidLoad() {
@@ -202,6 +185,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         pwClearButton.addTarget(self, action: #selector(clearTextField(_:)), for: .touchUpInside)
         pwButton.addTarget(self, action: #selector(pwButtonToggle(_:)), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(loginButtonDidTap), for: .touchUpInside)
+        nicknameButton.addTarget(self, action: #selector(nicknameButtonDidTap), for: .touchUpInside)
     }
     
     func setDelegate() {
@@ -211,7 +195,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func setLayout() {
-        [titleLabel, idTextField, pwTextField, loginButton].forEach {
+        [titleLabel, idTextField, pwTextField, loginButton, nicknameButton].forEach {
             self.view.addSubview($0)
         }
 
@@ -223,20 +207,22 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         idTextField.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(31)
             make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(52)
         }
         
         pwTextField.snp.makeConstraints { make in
             make.top.equalTo(idTextField.snp.bottom).offset(7)
             make.left.right.equalTo(idTextField)
-            make.height.equalTo(52)
         }
         
         loginButton.snp.makeConstraints { make in
             make.top.equalTo(pwTextField.snp.bottom).offset(21)
             make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(58)
-            
+        }
+        
+        nicknameButton.snp.makeConstraints { make in
+            make.top.equalTo(loginButton.snp.bottom).offset(21)
+            make.left.right.equalToSuperview().inset(20)
         }
     }
 }
+ 

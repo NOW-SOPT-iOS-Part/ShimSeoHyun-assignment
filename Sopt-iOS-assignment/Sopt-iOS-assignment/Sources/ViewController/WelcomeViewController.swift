@@ -33,14 +33,10 @@ final class WelcomeViewController : UIViewController{
     }()
     
     private let mainButton : UIButton = {
-        
         let button = UIButton()
-        
-        button.layer.cornerRadius = 3
-        button.setTitle("메인으로", for: .normal)
-        button.titleLabel?.font = UIFont(name: "PretendardVariable-Bold", size: 14)
-        
+        button.customMiddleButton(title: "메인으로")
         button.customEnabledButton(bgColor: "red", fontColor: "white")
+        
         return button
     }()
     
@@ -70,7 +66,6 @@ final class WelcomeViewController : UIViewController{
         }
         mainButton.snp.makeConstraints{ make in
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-68)
-            make.height.equalTo(58)
             make.left.right.equalToSuperview().inset(20)
         }
     }
