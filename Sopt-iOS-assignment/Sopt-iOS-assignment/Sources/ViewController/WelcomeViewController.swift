@@ -4,10 +4,33 @@ import SnapKit
 final class WelcomeViewController : UIViewController{
     private let welcomeLabel : UILabel = {
         let label = UILabel()
-        label.text = "환영합니다 __님!"
+        label.textColor = .white
+        label.text = "__님\n반가워요!"
+        label.textAlignment = .center
+        label.font = UIFont(name: "Pretendard-Bold", size: 23)
+        label.numberOfLines = 2
         
         return label
     }()
+    
+    private let headerImage : UIImageView = {
+       let imageView = UIImageView()
+        imageView.image = UIImage(named: "tiving_header")
+        return imageView
+    }()
+    
+    private let mainButton : UIButton = {
+        
+        let button = UIButton()
+        
+        button.layer.cornerRadius = 3
+        button.setTitle("메인으로", for: .normal)
+        button.titleLabel?.font = UIFont(name: "PretendardVariable-Bold", size: 14)
+        
+        button.customEnabledButton(bgColor: "red", fontColor: "white")
+        return button
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,8 +40,23 @@ final class WelcomeViewController : UIViewController{
     }
     
     private func setLayout() {
-        [welcomeLabel].forEach {
+        [headerImage, welcomeLabel,mainButton].forEach {
             self.view.addSubview($0)
+        }
+        
+        headerImage.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview()
+        }
+        welcomeLabel.snp.makeConstraints{ make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(headerImage.snp.bottom).offset(67)
+        }
+        mainButton.snp.makeConstraints{ make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-68)
+            make.height.equalTo(58)
+            make.left.right.equalToSuperview().inset(20)
         }
     }
 }

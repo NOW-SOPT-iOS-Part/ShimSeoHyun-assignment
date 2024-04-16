@@ -16,26 +16,7 @@ private extension UIStackView {
     }
 }
 
-private extension UIButton {
-    func customIconButton(icon: String,size: Int){
-        setImage(UIImage(named:icon), for: .normal)
-        frame = CGRect(x: 0, y: 0, width: size, height: size)
-    }
-    
-    func customEnabledButton(bgColor: String, fontColor: String){
-        backgroundColor = UIColor(named: bgColor)
-        setTitleColor(UIColor(named:fontColor), for: .normal)
-        isEnabled = true
-    }
-    
-    func customDisabledButton(borderColor: String, fontColor:String){
-        backgroundColor = .none
-        layer.borderWidth = 1
-        layer.borderColor = UIColor(named: borderColor)?.cgColor
-        setTitleColor(UIColor(named: fontColor), for: .normal)
-        isEnabled = false
-    }
-}
+
 
 private extension UITextField {
     func customLoginTextField(placeholderText:String? = nil){
@@ -195,9 +176,10 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         let button = UIButton()
         
         button.layer.cornerRadius = 3
+        button.setTitle("로그인하기", for: .normal)
         button.titleLabel?.font = UIFont(name: "PretendardVariable-Bold", size: 14)
         
-        button.setTitle("로그인하기", for: .normal)
+        
 
         button.customDisabledButton(borderColor: "grey4", fontColor: "grey2")
 
@@ -233,7 +215,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
 
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(90)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(46)
         }
         
         idTextField.snp.makeConstraints { make in
@@ -250,8 +232,9 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         
         loginButton.snp.makeConstraints { make in
             make.top.equalTo(pwTextField.snp.bottom).offset(21)
-            make.left.right.equalTo(idTextField)
+            make.left.right.equalToSuperview().inset(20)
             make.height.equalTo(58)
+            
         }
     }
 }
