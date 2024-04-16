@@ -3,13 +3,15 @@ import SnapKit
 
 final class WelcomeViewController : UIViewController{
     private var id: String?
+    private var nickname : String?
     
-    func setId(id: String?) {
+    func setUser(id: String?, nickname: String?) {
         self.id = id
+        self.nickname = nickname
     }
     
-    private func bindID() {
-        guard let idText = id else { return }
+    private func bindUser() {
+        guard let idText = nickname else { return }
         self.welcomeLabel.text = "\(idText)님 \n반가워요!"
     }
     
@@ -47,7 +49,7 @@ final class WelcomeViewController : UIViewController{
         
         setLayout()
         
-        bindID()
+        bindUser()
     }
     
     private func setLayout() {

@@ -10,9 +10,9 @@ extension UITextField {
     
     func customTextField(
         placeholderText:String,
+        placeholderFontColor:String?="grey2",
         bgColor:String?="grey4",
-        fontColor:String?="white",
-        placeholderFontColor:String?="grey2"
+        fontColor:String?="white"
     )
     {
         backgroundColor = UIColor(named: bgColor!)

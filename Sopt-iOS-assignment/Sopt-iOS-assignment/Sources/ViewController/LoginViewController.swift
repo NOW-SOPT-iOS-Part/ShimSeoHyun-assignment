@@ -22,6 +22,7 @@ private extension UIStackView {
 
 
 final class LoginViewController: UIViewController, UITextFieldDelegate {
+    private var login_nickname : String?
     
     // 텍스트 필드가 바뀔 때
     func textFieldDidChangeSelection(_ textField: UITextField) {
@@ -144,7 +145,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @objc private func loginButtonDidTap(){
         let welcomeViewController = WelcomeViewController()
-        welcomeViewController.setId(id: idTextField.text)
+        welcomeViewController.setUser(id: idTextField.text, nickname: login_nickname)
         self.navigationController?.pushViewController(welcomeViewController, animated: true)
         
     }
@@ -162,6 +163,10 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     @objc private func nicknameButtonDidTap(){
         let nicknameViewController = NicknameViewController()
         nicknameViewController.modalPresentationStyle = .formSheet
+        nicknameViewController.completionHandler = { [weak self] nickname in
+            guard let self else { return }
+            login_nickname = nickname
+        }
         self.present(nicknameViewController, animated: true)
     }
     

@@ -16,18 +16,30 @@ final class NicknameViewController : UIViewController{
         return label
     }()
     
+    var completionHandler: ((String) -> (Void))?
+    
+    @objc
+    private func saveButtonDidTap() {
+        print("클릭\(nicknameTextField.text!)")
+        completionHandler?(nicknameTextField.text!)
+        
+        self.dismiss(animated: true)
+    }
+    
     private let saveButton : UIButton = {
         let button = UIButton()
         button.customMiddleButton(title: "저장하기")
         button.layer.cornerRadius = 12
         
-        button.customDisabledButton(borderColor: "grey4", fontColor: "grey2")
+        button.customEnabledButton(bgColor: "red", fontColor: "white")
+//        button.customDisabledButton(borderColor: "grey4", fontColor: "grey2")
+
         return button
     }()
     
     private let nicknameTextField: UITextField = {
         let textField = UITextField()
-        textField.customTextField(placeholderText: "닉네임", bgColor: "grey1", fontColor: "black", placeholderFontColor: "grey2")
+        textField.customTextField(placeholderText: "닉네임", placeholderFontColor: "grey2", bgColor: "grey1", fontColor: "black")
         
         return textField
     }()
@@ -44,11 +56,9 @@ final class NicknameViewController : UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         setLayout()
         
-//        saveButton.addTarget(self, action: #selector(saveButtonDidTap), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(saveButtonDidTap), for: .touchUpInside)
     }
     
     
