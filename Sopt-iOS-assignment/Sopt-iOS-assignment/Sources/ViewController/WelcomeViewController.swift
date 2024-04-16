@@ -2,12 +2,25 @@ import UIKit
 import SnapKit
 
 final class WelcomeViewController : UIViewController{
+    private var id: String?
+    
+    func setId(id: String?) {
+        self.id = id
+    }
+    
+    private func bindID() {
+        guard let idText = id else { return }
+        self.welcomeLabel.text = "\(idText)님 \n반가워요!"
+    }
+    
+    
     private let welcomeLabel : UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "__님\n반가워요!"
+        label.text = ""
         label.textAlignment = .center
-        label.font = UIFont(name: "Pretendard-Bold", size: 23)
+        label.font = UIFont(name: "PretendardVariable-Bold", size: 23)
+        
         label.numberOfLines = 2
         
         return label
@@ -37,6 +50,8 @@ final class WelcomeViewController : UIViewController{
         self.view.backgroundColor = .black
         
         setLayout()
+        
+        bindID()
     }
     
     private func setLayout() {

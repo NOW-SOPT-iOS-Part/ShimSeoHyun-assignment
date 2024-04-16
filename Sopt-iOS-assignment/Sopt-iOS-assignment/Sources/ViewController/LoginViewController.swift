@@ -167,9 +167,11 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     
 
     
-    @objc private func logiButtonDidTap(){
+    @objc private func loginButtonDidTap(){
         let welcomeViewController = WelcomeViewController()
+        welcomeViewController.setId(id: idTextField.text)
         self.navigationController?.pushViewController(welcomeViewController, animated: true)
+        
     }
     
     private lazy var loginButton: UIButton = {
@@ -199,7 +201,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         idClearButton.addTarget(self, action: #selector(clearTextField(_:)), for: .touchUpInside)
         pwClearButton.addTarget(self, action: #selector(clearTextField(_:)), for: .touchUpInside)
         pwButton.addTarget(self, action: #selector(pwButtonToggle(_:)), for: .touchUpInside)
-        loginButton.addTarget(self, action: #selector(logiButtonDidTap), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(loginButtonDidTap), for: .touchUpInside)
     }
     
     func setDelegate() {
