@@ -21,16 +21,23 @@ private extension UIButton {
         setImage(UIImage(named:icon), for: .normal)
         frame = CGRect(x: 0, y: 0, width: size, height: size)
     }
+    
+    func customEnabledButton(bgColor: String, fontColor: String){
+        backgroundColor = UIColor(named: bgColor)
+        setTitleColor(UIColor(named:fontColor), for: .normal)
+        isEnabled = true
+    }
+    
+    func customDisabledButton(borderColor: String, fontColor:String){
+        backgroundColor = .none
+        layer.borderWidth = 1
+        layer.borderColor = UIColor(named: borderColor)?.cgColor
+        setTitleColor(UIColor(named: fontColor), for: .normal)
+        isEnabled = false
+    }
 }
 
 private extension UITextField {
-    func placeholderColor(color: UIColor){
-        guard let string = self.placeholder else{
-            return
-        }
-        attributedPlaceholder = NSAttributedString(string: string, attributes: [.foregroundColor:color])
-    }
-    
     func customLoginTextField(placeholderText:String? = nil){
         backgroundColor = .grey4
         layer.cornerRadius = 3
@@ -65,6 +72,11 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         else if(textField == pwTextField){
             pwClearButton.isHidden = pwTextField.text?.isEmpty ?? true
+        }
+        
+        // idTextField와 pwTextField 가 둘 다 채워졌을 경우
+        if(!(idTextField.text?.isEmpty ?? true) && !(pwTextField.text?.isEmpty ?? true)){
+            loginButton.customEnabledButton(bgColor: "red", fontColor: "white")
         }
     }
     
@@ -106,10 +118,9 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         return label
     }()
     
-    // -----------------------------
-    // ------- ID Text Field -------
-    // -----------------------------
     
+    // ------- ID Text Field -------
+
     private let idClearButton : UIButton = {
         let button = UIButton()
         button.customIconButton(icon: "icon_clear", size: 20)
@@ -135,9 +146,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }()
     
     
-    // -----------------------------
     // ------- PW Text Field -------
-    // -----------------------------
     
     private let pwClearButton : UIButton = {
         let button = UIButton()
@@ -172,22 +181,30 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
+    
+    // ------- Login Button -------
+    
+
+    
+    @objc private func logiButtonDidTap(){
+        let welcomeViewController = WelcomeViewController()
+        self.navigationController?.pushViewController(welcomeViewController, animated: true)
+    }
+    
     private lazy var loginButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .red
+        
         button.layer.cornerRadius = 3
-        button.setTitle("로그인하기", for: .normal)
-        button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont(name: "PretendardVariable-Bold", size: 14)
+        
+        button.setTitle("로그인하기", for: .normal)
+
+        button.customDisabledButton(borderColor: "grey4", fontColor: "grey2")
 
         return button
     }()
     
-    func setDelegate() {
-        //UITextFieldDelegate프로토콜을 채택한 LoginViewController가 self
-        idTextField.delegate = self
-        pwTextField.delegate = self
-    }
+
 
     
     override func viewDidLoad() {
@@ -200,6 +217,13 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         idClearButton.addTarget(self, action: #selector(clearTextField(_:)), for: .touchUpInside)
         pwClearButton.addTarget(self, action: #selector(clearTextField(_:)), for: .touchUpInside)
         pwButton.addTarget(self, action: #selector(pwButtonToggle(_:)), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(logiButtonDidTap), for: .touchUpInside)
+    }
+    
+    func setDelegate() {
+        //UITextFieldDelegate프로토콜을 채택한 LoginViewController가 self
+        idTextField.delegate = self
+        pwTextField.delegate = self
     }
     
     private func setLayout() {

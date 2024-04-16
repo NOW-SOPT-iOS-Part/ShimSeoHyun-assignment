@@ -10,6 +10,7 @@
 		86616E862BCD389D006BE35B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 86616E852BCD389D006BE35B /* SnapKit */; };
 		86616E882BCD389D006BE35B /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 86616E872BCD389D006BE35B /* SnapKit-Dynamic */; };
 		86616E8A2BCD3924006BE35B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86616E892BCD3924006BE35B /* LoginViewController.swift */; };
+		86763ECE2BCE1052009ABF9E /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86763ECD2BCE1052009ABF9E /* WelcomeViewController.swift */; };
 		8676605C2BCD2F63003B3675 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676605B2BCD2F63003B3675 /* AppDelegate.swift */; };
 		8676605E2BCD2F63003B3675 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676605D2BCD2F63003B3675 /* SceneDelegate.swift */; };
 		867660602BCD2F63003B3675 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676605F2BCD2F63003B3675 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 		8676607D2BCD2F65003B3675 /* Sopt_iOS_assignmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676607C2BCD2F65003B3675 /* Sopt_iOS_assignmentUITests.swift */; };
 		8676607F2BCD2F65003B3675 /* Sopt_iOS_assignmentUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8676607E2BCD2F65003B3675 /* Sopt_iOS_assignmentUITestsLaunchTests.swift */; };
 		86DA6BAE2BCD44DF000FB556 /* Pretendard.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86DA6BAD2BCD44DF000FB556 /* Pretendard.ttf */; };
+		86DA6BB62BCE086E000FB556 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA6BB52BCE086E000FB556 /* TextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		86616E892BCD3924006BE35B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		86763ECD2BCE1052009ABF9E /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		867660582BCD2F63003B3675 /* Sopt-iOS-assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sopt-iOS-assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8676605B2BCD2F63003B3675 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8676605D2BCD2F63003B3675 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +58,7 @@
 		8676607C2BCD2F65003B3675 /* Sopt_iOS_assignmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sopt_iOS_assignmentUITests.swift; sourceTree = "<group>"; };
 		8676607E2BCD2F65003B3675 /* Sopt_iOS_assignmentUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sopt_iOS_assignmentUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		86DA6BAD2BCD44DF000FB556 /* Pretendard.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pretendard.ttf; sourceTree = "<group>"; };
+		86DA6BB52BCE086E000FB556 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 		864EBAA32BCD34C80079BD27 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				86DA6BB32BCE0851000FB556 /* Extentions */,
 				864EBAA42BCD34CE0079BD27 /* ViewController */,
 			);
 			path = Sources;
@@ -96,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				86616E892BCD3924006BE35B /* LoginViewController.swift */,
+				86763ECD2BCE1052009ABF9E /* WelcomeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -167,6 +173,22 @@
 				86DA6BAD2BCD44DF000FB556 /* Pretendard.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		86DA6BB32BCE0851000FB556 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				86DA6BB42BCE085C000FB556 /* UIKit */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
+		86DA6BB42BCE085C000FB556 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				86DA6BB52BCE086E000FB556 /* TextField.swift */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +333,8 @@
 				86616E8A2BCD3924006BE35B /* LoginViewController.swift in Sources */,
 				867660602BCD2F63003B3675 /* ViewController.swift in Sources */,
 				8676605C2BCD2F63003B3675 /* AppDelegate.swift in Sources */,
+				86763ECE2BCE1052009ABF9E /* WelcomeViewController.swift in Sources */,
+				86DA6BB62BCE086E000FB556 /* TextField.swift in Sources */,
 				8676605E2BCD2F63003B3675 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
