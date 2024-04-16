@@ -4,19 +4,19 @@ import SnapKit
 final class WelcomeViewController : UIViewController{
     private var userInfo : User?
 
-    
-    var completionHandler: ((String) -> (Void))?
-    
-    func setUser(userInfo:User?) {
-        self.userInfo = userInfo
-    }
-    
     private func bindUser() {
         if  ((userInfo?.nickname?.isEmpty) != nil) {
             self.welcomeLabel.text = "\(userInfo?.nickname ?? "") 님 \n반가워요!"
-        } else {
+        } else if((userInfo?.id?.isEmpty) != nil) {
+            print("\(String(describing: userInfo?.id))")
             self.welcomeLabel.text = "\(userInfo?.id ?? "")@gmail.com 님 \n반가워요!"
+        }else{
+            self.welcomeLabel.text = "오류가 발생했습니다."
         }
+    }
+    
+    func setUser(userInfo : User) {
+        self.userInfo = userInfo
     }
     
     private let welcomeLabel : UILabel = {
@@ -38,15 +38,14 @@ final class WelcomeViewController : UIViewController{
     }()
     
     @objc private func mainButtonDidTap() {
-//        completionHandler?(id,)
-        self.dismiss(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     private let mainButton : UIButton = {
         let button = UIButton()
         button.customMiddleButton(title: "메인으로")
         button.customEnabledButton(bgColor: "red", fontColor: "white")
-//        button.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
+        button.addTarget(WelcomeViewController.self, action: #selector(mainButtonDidTap), for: .touchUpInside)
         return button
     }()
     

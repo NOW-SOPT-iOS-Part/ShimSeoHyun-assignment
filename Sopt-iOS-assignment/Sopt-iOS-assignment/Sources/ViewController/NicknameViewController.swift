@@ -1,7 +1,20 @@
 import UIKit
 
-final class NicknameViewController : UIViewController{
-    private var userInfo : User?
+final class NicknameViewController : UIViewController, UITextFieldDelegate{
+    var nickname : String?
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if(!(nicknameTextField.text?.isEmpty ?? true)){
+            saveButton.customEnabledButton(bgColor: "red", fontColor: "white")
+        }
+    }
+
+    private func bindNickname() {
+        guard let nicknameText = nickname else{return}
+        nicknameTextField.text = nicknameText
+    }
+    
+    
     
     private let nicknameLabel : UILabel = {
         let label = UILabel()
@@ -24,8 +37,7 @@ final class NicknameViewController : UIViewController{
         button.customMiddleButton(title: "저장하기")
         button.layer.cornerRadius = 12
         
-        button.customEnabledButton(bgColor: "red", fontColor: "white")
-//        button.customDisabledButton(borderColor: "grey4", fontColor: "grey2")
+        button.customDisabledButton(borderColor: "grey4", fontColor: "grey2")
 
         return button
     }()
@@ -50,10 +62,16 @@ final class NicknameViewController : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
+        setDelegate()
         
         saveButton.addTarget(self, action: #selector(saveButtonDidTap), for: .touchUpInside)
+        
+        bindNickname()
     }
     
+    func setDelegate() {
+        nicknameTextField.delegate = self
+    }
     
     
     private func setLayout() {

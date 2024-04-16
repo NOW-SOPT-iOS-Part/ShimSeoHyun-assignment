@@ -73,8 +73,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }()
     
     
-    // ------- ID Text Field -------
-
+    // ------- ID 입력 -------
     private let idClearButton : UIButton = {
         let button = UIButton()
         button.customIconButton(icon: "icon_clear", size: 20)
@@ -98,10 +97,9 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         
         return textField
     }()
+    // ------- ID 입력 -------
     
-    
-    // ------- PW Text Field -------
-    
+    // ------- PW 입력 -------
     private let pwClearButton : UIButton = {
         let button = UIButton()
         button.customIconButton(icon: "icon_clear", size: 20)
@@ -134,15 +132,14 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         
         return textField
     }()
+    // ------- PW 입력 -------
     
-    
-    // ------- Login Button -------
-    
+    // -------로그인 버튼 -------
     @objc private func loginButtonDidTap(){
         let welcomeViewController = WelcomeViewController()
+        userInfo.setId(id: idTextField.text)
         welcomeViewController.setUser(userInfo: userInfo)
         self.navigationController?.pushViewController(welcomeViewController, animated: true)
-        
     }
 
     private let loginButton: UIButton = {
@@ -152,11 +149,33 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         
         return button
     }()
+    // -------로그인 버튼 -------
+    
+    // ---- 찾기 버튼 ----
+    private let searchIdButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("아이디 찾기", for: .normal)
+        button.setTitleColor(.grey2, for: .normal)
+        button.titleLabel?.font = UIFont(name: "PretendardVariable-SemiBold", size: 14)
+    
+        return button
+    }()
+    
+    private let searchPwButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("비밀번호 찾기", for: .normal)
+        button.setTitleColor(.grey2, for: .normal)
+        button.titleLabel?.font = UIFont(name: "PretendardVariable-SemiBold", size: 14)
+        
+        return button
+    }()
+    // ---- 찾기 버튼 ----
     
     
     // ---- 닉네임 버튼 ----
     @objc private func nicknameButtonDidTap(){
         let nicknameViewController = NicknameViewController()
+        nicknameViewController.nickname = userInfo.nickname
         nicknameViewController.modalPresentationStyle = .formSheet
         nicknameViewController.completionHandler = { [weak self] nickname in
             guard let self else { return }
@@ -165,13 +184,26 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         self.present(nicknameViewController, animated: true)
     }
     
-    private let nicknameButton : UIButton = {
-        let button = UIButton()
-        button.customMiddleButton(title: "닉네임")
-        button.customEnabledButton(bgColor: "blue", fontColor: "white")
-        return button
+    private let nicknameLabel : UILabel = {
+        let label = UILabel()
+        label.text = "아직 계정이 없으신가요?"
+        label.textColor = .grey3
+        label.font = UIFont(name: "PretendardVariable-SemiBold", size: 14)
+        
+        return label
     }()
     
+    private let nicknameButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("닉네임 만들러가기", for: .normal)
+        button.setTitleColor(.grey2, for: .normal)
+        
+        button.titleLabel?.font = UIFont(name: "PretendardVariable-Bold", size: 14)
+    
+        
+        return button
+    }()
+    // ---- 닉네임 버튼 ----
 
     
     override func viewDidLoad() {
@@ -195,7 +227,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func setLayout() {
-        [titleLabel, idTextField, pwTextField, loginButton, nicknameButton].forEach {
+        [titleLabel, idTextField, pwTextField, loginButton,searchIdButton, searchPwButton,nicknameLabel,nicknameButton].forEach {
             self.view.addSubview($0)
         }
 
@@ -219,9 +251,26 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
             make.left.right.equalToSuperview().inset(20)
         }
         
+        searchIdButton.snp.makeConstraints{ make in
+            make.centerX.equalToSuperview().multipliedBy(0.5)
+            make.top.equalTo(loginButton.snp.bottom).offset(31)
+        }
+        
+        searchPwButton.snp.makeConstraints{ make in
+            make.centerX.equalToSuperview().multipliedBy(1.5)
+            make.top.equalTo(loginButton.snp.bottom).offset(31)
+        }
+        
+        nicknameLabel.snp.makeConstraints{ make in
+            make.centerX.equalToSuperview().multipliedBy(0.5)
+            make.top.equalTo(loginButton.snp.bottom).offset(81)
+            
+        }
+        
         nicknameButton.snp.makeConstraints { make in
-            make.top.equalTo(loginButton.snp.bottom).offset(21)
-            make.left.right.equalToSuperview().inset(20)
+            make.centerX.equalToSuperview().multipliedBy(1.5)
+            make.top.equalTo(loginButton.snp.bottom).offset(81)
+            
         }
     }
 }

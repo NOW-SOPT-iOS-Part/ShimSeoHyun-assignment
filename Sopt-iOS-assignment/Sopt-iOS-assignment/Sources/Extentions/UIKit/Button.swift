@@ -17,6 +17,7 @@ extension UIButton {
     }
     func customEnabledButton(bgColor: String, fontColor: String){
         backgroundColor = UIColor(named: bgColor)
+        layer.borderWidth = 0
         setTitleColor(UIColor(named:fontColor), for: .normal)
         isEnabled = true
     }
