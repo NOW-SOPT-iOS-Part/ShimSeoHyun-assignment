@@ -1,12 +1,7 @@
 import UIKit
 
 final class NicknameViewController : UIViewController{
-    
-//    @objc private func saveButtonDidTap(){
-//        let welcomeViewController = WelcomeViewController()
-//        welcomeViewController.setId(id: idTextField.text)
-//        self.navigationController?.pushViewController(welcomeViewController, animated: true)
-//    }
+    private var userInfo : User?
     
     private let nicknameLabel : UILabel = {
         let label = UILabel()
@@ -20,9 +15,7 @@ final class NicknameViewController : UIViewController{
     
     @objc
     private func saveButtonDidTap() {
-        print("클릭\(nicknameTextField.text!)")
         completionHandler?(nicknameTextField.text!)
-        
         self.dismiss(animated: true)
     }
     

@@ -2,19 +2,22 @@ import UIKit
 import SnapKit
 
 final class WelcomeViewController : UIViewController{
-    private var id: String?
-    private var nickname : String?
+    private var userInfo : User?
+
     
-    func setUser(id: String?, nickname: String?) {
-        self.id = id
-        self.nickname = nickname
+    var completionHandler: ((String) -> (Void))?
+    
+    func setUser(userInfo:User?) {
+        self.userInfo = userInfo
     }
     
     private func bindUser() {
-        guard let idText = nickname else { return }
-        self.welcomeLabel.text = "\(idText)님 \n반가워요!"
+        if  ((userInfo?.nickname?.isEmpty) != nil) {
+            self.welcomeLabel.text = "\(userInfo?.nickname ?? "") 님 \n반가워요!"
+        } else {
+            self.welcomeLabel.text = "\(userInfo?.id ?? "")@gmail.com 님 \n반가워요!"
+        }
     }
-    
     
     private let welcomeLabel : UILabel = {
         let label = UILabel()
@@ -34,11 +37,16 @@ final class WelcomeViewController : UIViewController{
         return imageView
     }()
     
+    @objc private func mainButtonDidTap() {
+//        completionHandler?(id,)
+        self.dismiss(animated: true)
+    }
+    
     private let mainButton : UIButton = {
         let button = UIButton()
         button.customMiddleButton(title: "메인으로")
         button.customEnabledButton(bgColor: "red", fontColor: "white")
-        
+//        button.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
         return button
     }()
     
@@ -48,7 +56,6 @@ final class WelcomeViewController : UIViewController{
         self.view.backgroundColor = .black
         
         setLayout()
-        
         bindUser()
     }
     
