@@ -1,5 +1,6 @@
 import UIKit
 
+
 final class NicknameViewController : UIViewController, UITextFieldDelegate{
     var nickname : String?
     
@@ -8,6 +9,7 @@ final class NicknameViewController : UIViewController, UITextFieldDelegate{
             saveButton.customEnabledButton(bgColor: "red", fontColor: "white")
         }
     }
+    
 
     private func bindNickname() {
         guard let nicknameText = nickname else{return}
@@ -42,6 +44,10 @@ final class NicknameViewController : UIViewController, UITextFieldDelegate{
         return button
     }()
     
+
+
+    
+    
     private let nicknameTextField: UITextField = {
         let textField = UITextField()
         textField.customTextField(placeholderText: "닉네임", placeholderFontColor: "grey2", bgColor: "grey1", fontColor: "black")
@@ -72,6 +78,20 @@ final class NicknameViewController : UIViewController, UITextFieldDelegate{
     func setDelegate() {
         nicknameTextField.delegate = self
     }
+    
+
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let currentText = textField.text,
+              let range = Range(range, in: currentText) else {
+            return false
+        }
+
+        let newText = currentText.replacingCharacters(in: range, with: string)
+    
+        return koreanLangCheck(newText) || string == ""
+    }
+
     
     
     private func setLayout() {
