@@ -23,16 +23,29 @@ final class MainView : UIView  {
     }
     
     private func setLayout() {
-        [firstCollectionView, secondCollectionView].forEach{self.addSubview($0)}
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .yellow
+        let stackView = UIStackView()
+        stackView.backgroundColor = .grey3
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        
+        for view in [mainCollectionView,genreCollectionView,rankSection,watchingSection] {
+            stackView.addArrangedSubview(view) // 배열의 각 요소를 스택뷰에 추가
+        }
+        
+        self.addSubview(scrollView)
 
-        firstCollectionView.snp.makeConstraints{
-            $0.width.equalToSuperview()
-            $0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+        scrollView.snp.makeConstraints{
+            $0.edges.equalTo(self.safeAreaLayoutGuide)
         }
-        secondCollectionView.snp.makeConstraints{
-            $0.width.equalToSuperview()
-            $0.top.equalTo(firstCollectionView.snp.bottom).offset(20)
+        
+        scrollView.addSubview(stackView)
+        stackView.snp.makeConstraints {
+            $0.edges.equalTo(scrollView) // 스크롤뷰의 가장자리에 맞춤
+            $0.width.equalTo(scrollView) // 수평 스크롤 방지
         }
+        
     }
     
     // -------------------------------------
@@ -40,53 +53,35 @@ final class MainView : UIView  {
     // -------------------------------------
     
     private func register() {
-        firstCollectionView.register(
+        mainCollectionView.register(
             FirstCollectionViewCell.self,
             forCellWithReuseIdentifier: FirstCollectionViewCell.identifier
         )
         
-        secondCollectionView.register(
+        rankCollectionView.register(
             FirstCollectionViewCell.self,
             forCellWithReuseIdentifier: FirstCollectionViewCell.identifier
         )
     }
     
 
-    
-    
     // -------------------------------------
     // -------------    view   -------------
     // -------------------------------------
+
+    let cellWidth = Float(UIScreen.main.bounds.width) - 16*2
+    lazy var mainCollectionView = createMainHorizontalCollectionView(type: .poster, width: cellWidth)
+
+    lazy var genreCollectionView = createMainHorizontalCollectionView(type: .genre, width: 200)
+
     
-    lazy var firstCollectionView: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.horizontalCollectionview(cellWidth: 200, cellHeight: 200, lineSpacing: 10)
-        
-        let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        
-        // 높이를 cell의 크기에 맞춤
-        view.snp.makeConstraints {
-            $0.height.equalTo(flowLayout.itemSize.height)
-        }
-        return view
-    }()
-
-
-    lazy var secondCollectionView: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.horizontalCollectionview(cellWidth: 100, cellHeight: 200, lineSpacing: 10)
-        
-        let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        
-        // 높이를 cell의 크기에 맞춤
-        view.snp.makeConstraints {
-//            s
-            $0.height.equalTo(flowLayout.itemSize.height)
-        }
-        return view
-    }()
+    lazy var rankCollectionView = createMainHorizontalCollectionView(type: .posterWithRank, width: 145)
     
-
+    private lazy var rankSection = createMainSection(collectionView: rankCollectionView, labelText: "오늘의 티빙 TOP 20")
+    
+    lazy var watchingCollectionView = createMainHorizontalCollectionView(type: .posterWithCount, width: 120)
+    
+    private lazy var watchingSection = createMainSection(collectionView: watchingCollectionView, labelText: "서현님이 시청중인 콘텐츠")
 }
 
 

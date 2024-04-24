@@ -13,23 +13,26 @@ final class MainViewController : UIViewController, UICollectionViewDelegate{
         super.viewDidLoad()
         self.view.backgroundColor = .black
         setDelegate()
+        
+
     }
+    
+    private func setDelegate(){
+        rootView.mainCollectionView.delegate = self
+        rootView.mainCollectionView.dataSource = self
+        
+        rootView.rankCollectionView.delegate = self
+        rootView.rankCollectionView.dataSource = self
+    }
+    
     
     private var itemData = Movie.dummy() {
         didSet {
             // 데이터 변경 시 컬렉션 뷰 재로드
-            rootView.firstCollectionView.reloadData()
-            rootView.secondCollectionView.reloadData()
+            rootView.mainCollectionView.reloadData()
+            rootView.rankCollectionView.reloadData()
         }
     }
-    private func setDelegate(){
-        rootView.firstCollectionView.delegate = self
-        rootView.firstCollectionView.dataSource = self
-        
-        rootView.secondCollectionView.delegate = self
-        rootView.secondCollectionView.dataSource = self
-    }
-
 }
 
 
