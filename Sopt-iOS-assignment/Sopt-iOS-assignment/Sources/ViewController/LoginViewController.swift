@@ -220,7 +220,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setDelegate() {
-        //UITextFieldDelegate프로토콜을 채택한 LoginViewController가 self
+        // UITextFieldDelegate프로토콜을 채택한 LoginViewController가 self
         idTextField.delegate = self
         pwTextField.delegate = self
     }
@@ -237,6 +237,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     
+    // 레이아웃 정렬
     private func setLayout() {
         [titleLabel, idTextField, pwTextField, loginButton,searchIdButton, searchPwButton,nicknameLabel,nicknameButton].forEach {
             self.view.addSubview($0)
