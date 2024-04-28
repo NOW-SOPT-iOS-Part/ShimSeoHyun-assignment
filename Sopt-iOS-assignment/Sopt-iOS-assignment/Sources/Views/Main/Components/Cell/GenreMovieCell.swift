@@ -1,7 +1,8 @@
 import UIKit
 
-final class FirstCollectionViewCell : UICollectionViewCell{
-    static let identifier = "FirstCollectionView"
+final class GenreMovieCell : UICollectionViewCell,MovieCell{
+    static var type: MovieCellType = .genre
+    static var identifier = "GenreCollectionView"
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,14 +30,9 @@ final class FirstCollectionViewCell : UICollectionViewCell{
             $0.center.equalToSuperview()
             
         }
-        
     }
-    
-    
+    func dataBind(_ itemData: Any, itemRow: Int) {
+        titleLabel.text = itemData as? String
+    }
 }
 
-extension FirstCollectionViewCell{
-    func dataBind(_ itemData : Movie, itemRow: Int){
-        titleLabel.text = itemData.title
-    }
-}

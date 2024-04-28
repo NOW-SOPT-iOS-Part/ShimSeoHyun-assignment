@@ -11,7 +11,6 @@ final class MainView : UIView  {
     override init(frame:CGRect){
         super.init(frame: frame)
         setLayout()
-        register()
     }
     
     // 해당 코드를 작성하지 않는다면 required init? 메소드는 런타임 시 호출이 됩
@@ -24,13 +23,12 @@ final class MainView : UIView  {
     
     private func setLayout() {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .yellow
-        let stackView = UIStackView()
-        stackView.backgroundColor = .grey3
-        stackView.axis = .vertical
-        stackView.spacing = 20
         
-        for view in [mainCollectionView,genreCollectionView,rankSection,watchingSection] {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 40
+        
+        for view in [mainCollectionView, mustSeeSection, popLiveSection, freeSection, userSection] {
             stackView.addArrangedSubview(view) // 배열의 각 요소를 스택뷰에 추가
         }
         
@@ -49,39 +47,29 @@ final class MainView : UIView  {
     }
     
     // -------------------------------------
-    // -------------   cell    -------------
-    // -------------------------------------
-    
-    private func register() {
-        mainCollectionView.register(
-            FirstCollectionViewCell.self,
-            forCellWithReuseIdentifier: FirstCollectionViewCell.identifier
-        )
-        
-        rankCollectionView.register(
-            FirstCollectionViewCell.self,
-            forCellWithReuseIdentifier: FirstCollectionViewCell.identifier
-        )
-    }
-    
-
-    // -------------------------------------
     // -------------    view   -------------
     // -------------------------------------
 
-    let cellWidth = Float(UIScreen.main.bounds.width) - 16*2
-    lazy var mainCollectionView = createMainHorizontalCollectionView(type: .poster, width: cellWidth)
-
-    lazy var genreCollectionView = createMainHorizontalCollectionView(type: .genre, width: 200)
-
+//    let cellWidth = Float(UIScreen.main.bounds.width) - 16*2
+    lazy var mainCollectionView = MovieCollectionView<MainMovieCell>(sectionInset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), minimunLineSpacing: 0)
     
-    lazy var rankCollectionView = createMainHorizontalCollectionView(type: .posterWithRank, width: 145)
+    // 티빙에서 꼭 봐야하는 콘텐츠
+    lazy var mustSeeCollectionView = MovieCollectionView<PosterMovieCell>()
+    lazy var mustSeeSection = MovieSection(labelText: "티빙에서 꼭 봐야할 콘텐츠", movieCollectionView: mustSeeCollectionView)
     
-    private lazy var rankSection = createMainSection(collectionView: rankCollectionView, labelText: "오늘의 티빙 TOP 20")
+    // 인기 LIVE 채널
+    lazy var popLiveCollectionView = MovieCollectionView<LiveMovieCell>()
+    lazy var popLiveSection = MovieSection(labelText: "인기 LIVE 채널", movieCollectionView: popLiveCollectionView)
     
-    lazy var watchingCollectionView = createMainHorizontalCollectionView(type: .posterWithCount, width: 120)
+    // 1화 무료! 파라마운트+ 인기 시리즈
+    lazy var freeCollectionView = MovieCollectionView<PosterMovieCell>()
+    lazy var freeSection = MovieSection(labelText: "1화 무료! 파라마운트+ 인기 시리즈", movieCollectionView: freeCollectionView)
     
-    private lazy var watchingSection = createMainSection(collectionView: watchingCollectionView, labelText: "서현님이 시청중인 콘텐츠")
+    // 광고
+    
+    // 마술보다 더 신비로운 영화(신비로운 영화사전님)
+    lazy var userCollectionView = MovieCollectionView<PosterMovieCell>()
+    lazy var userSection = MovieSection(labelText: "마술보다 더 신비로운 영화(신비로운 영화사전님)", movieCollectionView: userCollectionView)
+    
 }
-
 
