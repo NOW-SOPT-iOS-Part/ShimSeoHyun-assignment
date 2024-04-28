@@ -8,7 +8,6 @@ final class MainMovieCell : UICollectionViewCell, MovieCell{
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        self.backgroundColor = .red
         setLayout()
     }
     
@@ -17,22 +16,21 @@ final class MainMovieCell : UICollectionViewCell, MovieCell{
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let titleLabel : UILabel = {
-        let label = UILabel()
-        label.textColor = .red
-        return label
-    }()
+    private let image =  UIImageView()
     
     private func setLayout () {
-        [titleLabel].forEach{self.addSubview($0)}
-        titleLabel.snp.makeConstraints{
-            $0.center.equalToSuperview()
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 16
+        [image].forEach{self.addSubview($0)}
+        image.snp.makeConstraints{
+            $0.width.height.equalToSuperview()
             
         }
     }
     
     func dataBind(_ itemData: MovieBrief, itemRow: Int) {
-        titleLabel.text = itemData.title
+        image.image = UIImage(named: itemData.verticalImg)
     }
 }
 

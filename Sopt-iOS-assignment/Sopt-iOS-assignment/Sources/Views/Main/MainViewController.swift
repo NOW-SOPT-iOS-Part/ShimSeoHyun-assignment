@@ -17,7 +17,7 @@ final class MainViewController : UIViewController, UICollectionViewDelegate{
     }
     
     private func setData() {
-        rootView.mainCollectionView.itemData = [movieBriefList[0],movieBriefList[2],movieBriefList[1],movieBriefList[3]]
+        rootView.mainCollectionView.itemData = [movieBriefList[0],movieBriefList[2],movieBriefList[1],movieBriefList[3],movieBriefList[0],movieBriefList[2],movieBriefList[1],movieBriefList[3]]
         rootView.mustSeeCollectionView.itemData = [movieBriefList[1],movieBriefList[2],movieBriefList[0],movieBriefList[3]]
         rootView.popLiveCollectionView.itemData = MovieLiveList
         rootView.freeCollectionView.itemData = [movieBriefList[1],movieBriefList[2],movieBriefList[3],movieBriefList[0]]

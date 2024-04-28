@@ -16,27 +16,35 @@ final class PosterMovieCell : UICollectionViewCell, MovieCell{
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let posterImage = UIImageView()
+    private let image = UIImageView()
     private let titleLabel = UILabel()
 
     
     private func setLayout () {
-        [posterImage, titleLabel].forEach{self.addSubview($0)}
+        [image, titleLabel].forEach{self.addSubview($0)}
 
-        posterImage.snp.makeConstraints{
-            $0.top.left.equalToSuperview()
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 4
+        
+        image.snp.makeConstraints{
+            $0.width.equalToSuperview()
+            $0.height.equalTo(PosterMovieCell.type.getCGSize().width * 3/2)
         }
         
         titleLabel.textColor = .white
-        titleLabel.snp.makeConstraints{
-            $0.left.bottom.equalToSuperview()
+        titleLabel.lineBreakMode = .byTruncatingTail
+        titleLabel.numberOfLines = 1
+        
+        titleLabel.snp.makeConstraints {
+            $0.width.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
     
     func dataBind(_ itemData: MovieBrief, itemRow: Int) {
         titleLabel.text = itemData.title
-        
-        posterImage.image = UIImage(named: itemData.verticalImg)
+        image.image = UIImage(named: itemData.verticalImg)
         
     }
 }
