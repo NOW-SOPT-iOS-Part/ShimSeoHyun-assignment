@@ -1,6 +1,8 @@
 import UIKit
 
 final class MainMovieCell : UICollectionViewCell, MovieCell{
+    typealias DataType = MovieBrief
+    
     static var type: MovieCellType = .posterMain
     static var identifier = "MainMovieCell"
     
@@ -29,8 +31,8 @@ final class MainMovieCell : UICollectionViewCell, MovieCell{
         }
     }
     
-    func dataBind(_ itemData: Any, itemRow: Int) {
-        titleLabel.text = (itemData as AnyObject).title
+    func dataBind(_ itemData: MovieBrief, itemRow: Int) {
+        titleLabel.text = itemData.title
     }
 }
 

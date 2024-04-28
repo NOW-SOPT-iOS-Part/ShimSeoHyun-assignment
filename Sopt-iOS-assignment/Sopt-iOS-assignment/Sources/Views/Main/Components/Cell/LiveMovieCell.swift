@@ -1,6 +1,8 @@
 import UIKit
 
 final class LiveMovieCell : UICollectionViewCell, MovieCell{
+    typealias DataType = MovieLive
+    
     static var type: MovieCellType = .live
     static var identifier = "LiveMovieCell"
     
@@ -29,7 +31,7 @@ final class LiveMovieCell : UICollectionViewCell, MovieCell{
         }
     }
     
-    func dataBind(_ itemData: Any, itemRow: Int) {
-        titleLabel.text = (itemData as AnyObject).title
+    func dataBind(_ itemData: MovieLive, itemRow: Int) {
+        titleLabel.text = itemData.title
     }
 }

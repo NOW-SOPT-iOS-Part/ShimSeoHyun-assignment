@@ -1,7 +1,7 @@
 import UIKit
 
 class MovieCollectionView<T : MovieCell>:UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource{
-    var itemData: [String]?
+    var itemData: [T.DataType] = []
     
     init(sectionInset:UIEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16), minimunLineSpacing:CGFloat = 8) {
         let flowLayout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -36,13 +36,13 @@ class MovieCollectionView<T : MovieCell>:UICollectionView, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return itemData?.count ?? 0
+        return itemData.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let itemData = itemData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: T.self.identifier), for: indexPath) as! T
-        cell.dataBind(itemData?[indexPath.item] ?? [], itemRow: indexPath.item)
+        cell.dataBind(itemData[indexPath.item], itemRow: indexPath.item)
         return cell
     }
 }

@@ -17,11 +17,11 @@ final class MainViewController : UIViewController, UICollectionViewDelegate{
     }
     
     private func setData() {
-        rootView.mainCollectionView.itemData = ["일본어","중국어"]
-        rootView.mustSeeCollectionView.itemData = ["일본어","중국어"]
-        rootView.popLiveCollectionView.itemData = ["1","2","3"]
-        rootView.freeCollectionView.itemData = ["1","3","4","5"]
-        rootView.userCollectionView.itemData = ["1","2","3","4","5"]
+        rootView.mainCollectionView.itemData = [movieBriefList[0],movieBriefList[2],movieBriefList[1],movieBriefList[3]]
+        rootView.mustSeeCollectionView.itemData = [movieBriefList[1],movieBriefList[2],movieBriefList[0],movieBriefList[3]]
+        rootView.popLiveCollectionView.itemData = MovieLiveList
+        rootView.freeCollectionView.itemData = [movieBriefList[1],movieBriefList[2],movieBriefList[3],movieBriefList[0]]
+        rootView.userCollectionView.itemData = [movieBriefList[3],movieBriefList[1],movieBriefList[0],movieBriefList[2]]
     }
 }
 
