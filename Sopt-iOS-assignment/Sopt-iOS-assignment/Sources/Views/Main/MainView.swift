@@ -28,7 +28,16 @@ final class MainView : UIView  {
         stackView.axis = .vertical
         stackView.spacing = 40
         
-        for view in [mainCollectionView, mustSeeSection, popLiveSection, freeSection, userSection] {
+
+        for view in 
+        [
+            VerticalStackView(subViews: [mainCollectionView,mainCollectionView.navigation], spacingFloat: 16),
+            VerticalStackView(subViews: [mustSeeCollectionView.labelStackView,mustSeeCollectionView], spacingFloat: 12),
+            VerticalStackView(subViews: [popLiveCollectionView.labelStackView,popLiveCollectionView], spacingFloat: 12),
+            VerticalStackView(subViews: [freeCollectionView.labelStackView,freeCollectionView], spacingFloat: 12),
+            VerticalStackView(subViews: [userCollectionView.labelStackView,userCollectionView], spacingFloat: 12),
+        ]
+        {
             stackView.addArrangedSubview(view) // 배열의 각 요소를 스택뷰에 추가
         }
         
@@ -50,26 +59,22 @@ final class MainView : UIView  {
     // -------------    view   -------------
     // -------------------------------------
 
-//    let cellWidth = Float(UIScreen.main.bounds.width) - 16*2
-    lazy var mainCollectionView = MovieCollectionView<MainMovieCell>(sectionInset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), minimunLineSpacing: 0)
+    // 메인 베너
+    lazy var mainCollectionView = MainMovieCollectionView(labelText: "메인")
     
     // 티빙에서 꼭 봐야하는 콘텐츠
-    lazy var mustSeeCollectionView = MovieCollectionView<PosterMovieCell>()
-    lazy var mustSeeSection = MovieSection(labelText: "티빙에서 꼭 봐야할 콘텐츠", movieCollectionView: mustSeeCollectionView)
+    lazy var mustSeeCollectionView = MovieCollectionView<PosterMovieCell>(labelText: "티빙에서 꼭 봐야할 콘텐츠")
     
     // 인기 LIVE 채널
-    lazy var popLiveCollectionView = MovieCollectionView<LiveMovieCell>()
-    lazy var popLiveSection = MovieSection(labelText: "인기 LIVE 채널", movieCollectionView: popLiveCollectionView)
+    lazy var popLiveCollectionView = MovieCollectionView<LiveMovieCell>(labelText: "인기 LIVE 채널")
     
     // 1화 무료! 파라마운트+ 인기 시리즈
-    lazy var freeCollectionView = MovieCollectionView<PosterMovieCell>()
-    lazy var freeSection = MovieSection(labelText: "1화 무료! 파라마운트+ 인기 시리즈", movieCollectionView: freeCollectionView)
+    lazy var freeCollectionView = MovieCollectionView<PosterMovieCell>(labelText: "1화 무료! 파라마운트+ 인기 시리즈")
     
     // 광고
     
     // 마술보다 더 신비로운 영화(신비로운 영화사전님)
-    lazy var userCollectionView = MovieCollectionView<PosterMovieCell>()
-    lazy var userSection = MovieSection(labelText: "마술보다 더 신비로운 영화(신비로운 영화사전님)", movieCollectionView: userCollectionView)
+    lazy var userCollectionView = MovieCollectionView<PosterMovieCell>(labelText: "마술보다 더 신비로운 영화(신비로운 영화사전님)")
     
 }
 
