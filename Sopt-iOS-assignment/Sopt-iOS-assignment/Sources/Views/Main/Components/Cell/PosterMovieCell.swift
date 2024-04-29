@@ -32,7 +32,7 @@ final class PosterMovieCell : UICollectionViewCell, MovieCell{
             $0.height.equalTo(PosterMovieCell.type.getCGSize().width * 3/2)
         }
         
-        titleLabel.textColor = .white
+        titleLabel.textColor = .grey2
         titleLabel.lineBreakMode = .byTruncatingTail
         titleLabel.numberOfLines = 1
         
@@ -43,7 +43,7 @@ final class PosterMovieCell : UICollectionViewCell, MovieCell{
     }
     
     func dataBind(_ itemData: MovieBrief, itemRow: Int) {
-        titleLabel.text = itemData.title
+        titleLabel.attributedText = Font.B2.style(text:itemData.title)
         image.image = UIImage(named: itemData.verticalImg)
         
     }

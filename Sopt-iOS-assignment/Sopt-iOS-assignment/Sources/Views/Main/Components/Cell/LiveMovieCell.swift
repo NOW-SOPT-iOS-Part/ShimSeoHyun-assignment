@@ -76,10 +76,11 @@ final class LiveMovieCell : UICollectionViewCell, MovieCell{
     
     func dataBind(_ itemData: MovieLive, itemRow: Int) {
         image.image = UIImage(named: itemData.thumbnailImg)
-        companyLabel.text=itemData.company
-        titleLabel.text = itemData.title + " " + itemData.subTitle
-        rateLabel.text = String(itemData.rating) + "%"
-        rankLabel.text = String(itemRow+1)
         
+        companyLabel.attributedText = Font.B2.style(text:itemData.company)
+        titleLabel.attributedText = Font.B2.style(text: itemData.title + " " + itemData.subTitle)
+        rateLabel.attributedText = Font.B2.style(text: String(itemData.rating) + "%")
+        
+        rankLabel.attributedText = Font.B2.style(text: String(itemRow+1))
     }
 }

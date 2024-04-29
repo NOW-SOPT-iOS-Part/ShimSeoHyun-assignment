@@ -6,10 +6,10 @@ final class BottomTabBar : UITabBarController{
         super.viewDidLoad()
         
         let homeVC = MainViewController()
-        let liveVC = ViewController(titleText: "실시간")
-        let programVC = ViewController(titleText: "TV프로그램")
-        let movieVC = ViewController(titleText: "영화")
-        let paraVC = ViewController(titleText: "파라마운트+")
+        let liveVC = ViewController(titleText: "공계예정")
+        let programVC = ViewController(titleText: "검색")
+        let movieVC = ViewController(titleText: "다운로드")
+        let paraVC = ViewController(titleText: "기록")
         
         homeVC.tabBarItem = UITabBarItem(title: "홈", image: UIImage(named: "icon_clear"), tag: 0)
         liveVC.tabBarItem = UITabBarItem(title: "공계예정", image: UIImage(named: "icon_clear"), tag: 1)
@@ -27,6 +27,7 @@ final class BottomTabBar : UITabBarController{
            UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected) // 선택된 색상
        }
 }
+
     
     
 

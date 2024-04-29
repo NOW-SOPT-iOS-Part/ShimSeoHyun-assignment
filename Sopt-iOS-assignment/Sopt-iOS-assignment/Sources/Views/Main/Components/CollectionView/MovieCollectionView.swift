@@ -20,7 +20,7 @@ class MovieCollectionView<T : MovieCell>:UICollectionView, UICollectionViewDeleg
         resister()
         
         if let label = labelStackView.arrangedSubviews.first as? UILabel {
-                    label.text = labelText
+            label.attributedText = Font.H2.style(text:labelText)
         }
     }
     
@@ -56,7 +56,6 @@ class MovieCollectionView<T : MovieCell>:UICollectionView, UICollectionViewDeleg
     // UI
     var labelStackView : UIStackView = {
         let label = UILabel()
-
         label.textColor = .white
         
         let more = UILabel()
