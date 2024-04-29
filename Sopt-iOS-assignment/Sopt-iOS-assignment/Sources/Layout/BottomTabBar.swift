@@ -5,29 +5,68 @@ final class BottomTabBar : UITabBarController{
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        let homeVC = MainViewController()
-        let liveVC = ViewController(titleText: "공계예정")
-        let programVC = ViewController(titleText: "검색")
-        let movieVC = ViewController(titleText: "다운로드")
-        let paraVC = ViewController(titleText: "기록")
+        // Enum의 모든 케이스를 가져오기 위해 CaseIterable을 사용
+        let viewControllers = BottomTabBarItem.allCases.map { item in
+            let vc = item.viewController
+            vc.tabBarItem = item.tabBarItem
+            return vc
+        }
         
-        homeVC.tabBarItem = UITabBarItem(title: "홈", image: UIImage(named: "icon_clear"), tag: 0)
-        liveVC.tabBarItem = UITabBarItem(title: "공계예정", image: UIImage(named: "icon_clear"), tag: 1)
-        programVC.tabBarItem = UITabBarItem(title: "검색", image: UIImage(named: "icon_clear"), tag: 2)
-        movieVC.tabBarItem = UITabBarItem(title: "다운로드", image: UIImage(named: "icon_clear"), tag: 3)
-        paraVC.tabBarItem = UITabBarItem(title: "기록", image: UIImage(named: "icon_clear"), tag: 4)
-        viewControllers = [homeVC,liveVC,programVC,movieVC,paraVC]
+        self.viewControllers = viewControllers
         
+        // 탭바 스타일 설정
         self.tabBar.tintColor = .white
-        tabBar.unselectedItemTintColor = .grey3
+        self.tabBar.unselectedItemTintColor = UIColor(named: "grey3") ?? UIColor.lightGray
         self.tabBar.barTintColor = .black
         
-        // 탭바 라벨의 텍스트 스타일 변경
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(named: "grey3") ?? UIColor.white], for: .normal) // 기본 색상
-           UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected) // 선택된 색상
-       }
+        // 탭바 아이템의 텍스트 속성 설정
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(named: "grey3") ?? UIColor.white], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
+    }
 }
 
+enum BottomTabBarItem: CaseIterable{
+    case home
+    case comingsoon
+    case search
+    case download
+    case history
     
+    var title: String {
+        switch self {
+        case .home:
+            return "홈"
+        case .comingsoon:
+            return "공계예정"
+        case .search:
+            return "검색"
+        case .download:
+            return "다운로드"
+        case .history:
+            return "기록"
+        }
+    }
+    
+    var viewController: UIViewController {
+            switch self {
+            case .home:
+                return MainViewController()
+            case .comingsoon:
+                return ViewController(titleText: self.title)
+            case .search:
+                return ViewController(titleText: self.title)
+            case .download:
+                return ViewController(titleText: self.title)
+            case .history:
+                return ViewController(titleText: self.title)
+            }
+        }
+
+    
+    var tabBarItem: UITabBarItem {
+        let icon = UIImage(named:"icon_bottomTabBar_" + String(describing: self))
+        return UITabBarItem(title: self.title, image: icon, tag: self.hashValue)
+    }
+}
     
 
