@@ -2,22 +2,19 @@ import UIKit
 import SnapKit
 
 final class WelcomeViewController : UIViewController{
-    private var userInfo : User?
+
 
     private func bindUser() {
-        if  ((userInfo?.nickname?.isEmpty) != nil) {
-            self.welcomeLabel.text = "\(userInfo?.nickname ?? "") 님 \n반가워요!"
-        } else if((userInfo?.id?.isEmpty) != nil) {
-            print("\(String(describing: userInfo?.id))")
-            self.welcomeLabel.text = "\(userInfo?.id ?? "")@gmail.com 님 \n반가워요!"
+        if  ((Auth.shared.nickname) != "") {
+            self.welcomeLabel.text = "\(Auth.shared.nickname) 님 \n반가워요!"
+        } else if((Auth.shared.id?.isEmpty) != nil) {
+            print("\(String(describing: Auth.shared.id))")
+            self.welcomeLabel.text = "\(Auth.shared.id ?? "")@gmail.com 님 \n반가워요!"
         }else{
             self.welcomeLabel.text = "오류가 발생했습니다."
         }
     }
-    
-    func setUser(userInfo : User) {
-        self.userInfo = userInfo
-    }
+
     
     private let welcomeLabel : UILabel = {
         let label = UILabel()
@@ -38,24 +35,32 @@ final class WelcomeViewController : UIViewController{
     }()
     
     @objc private func mainButtonDidTap() {
-        self.navigationController?.popViewController(animated: true)
+        guard let window = self.view.window else { return }
+                
+        let mainViewController = BottomTabBar()
+        window.rootViewController = mainViewController
+        window.makeKeyAndVisible()
     }
     
     private let mainButton : UIButton = {
         let button = UIButton()
         button.customMiddleButton(title: "메인으로")
         button.customEnabledButton(bgColor: "red", fontColor: "white")
-        button.addTarget(WelcomeViewController.self, action: #selector(mainButtonDidTap), for: .touchUpInside)
         return button
     }()
     
     
+    func setTarget () {
+        mainButton.addTarget(self, action: #selector(mainButtonDidTap), for: .touchUpInside)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .black
         
         setLayout()
         bindUser()
+        setTarget ()
     }
     
     private func setLayout() {

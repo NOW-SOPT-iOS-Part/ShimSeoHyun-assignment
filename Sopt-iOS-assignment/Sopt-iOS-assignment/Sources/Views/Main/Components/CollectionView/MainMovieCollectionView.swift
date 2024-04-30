@@ -41,7 +41,6 @@ class MainMovieCollectionView : MovieCollectionView<MainMovieCell> {
     // 네비게이션 버튼 리스트
     private var navigationIcons: [UIView] = []
     private func addNavigationIcons(){
-        print(self.itemData.count)
         for _ in 1...self.itemData.count {
             let icon = UIView()
             
@@ -55,8 +54,13 @@ class MainMovieCollectionView : MovieCollectionView<MainMovieCell> {
             navigationIcons.append(icon)
             navigation.addArrangedSubview(icon)
         }
+        
+        //stack view의 경우 마지막 요소가 무조건적으로 길어져서 어떻게 해결하는 방법이 있을까요.... so sad
+        // .leading을 걸면 collectionView를 superView에 맞추기 어렵...
         let fianl = UIView()
         navigation.addArrangedSubview(fianl)
+        
+        // currendIndex로 초기화
         updateNavigationIcons()
     }
     
