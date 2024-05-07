@@ -5,7 +5,7 @@ extension UITextField {
         guard let string = self.placeholder else{
             return
         }
-        attributedPlaceholder = NSAttributedString(string: string, attributes: [.foregroundColor:UIColor(named: color)!])
+        attributedPlaceholder = NSAttributedString(string: string, attributes: [.foregroundColor:UIColor(named: color) ?? UIColor.grey3])
     }
     
     func customTextField(

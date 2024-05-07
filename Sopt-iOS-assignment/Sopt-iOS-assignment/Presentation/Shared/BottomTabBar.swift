@@ -16,11 +16,11 @@ final class BottomTabBar : UITabBarController{
         
         // 탭바 스타일 설정
         self.tabBar.tintColor = .white
-        self.tabBar.unselectedItemTintColor = UIColor(named: "grey3") ?? UIColor.lightGray
+        self.tabBar.unselectedItemTintColor = UIColor.grey3
         self.tabBar.barTintColor = .black
         
         // 탭바 아이템의 텍스트 속성 설정
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(named: "grey3") ?? UIColor.white], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.grey3], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
     }
 }

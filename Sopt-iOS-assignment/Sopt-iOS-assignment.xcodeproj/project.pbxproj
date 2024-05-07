@@ -41,6 +41,7 @@
 		86DA6BB62BCE086E000FB556 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA6BB52BCE086E000FB556 /* UITextField+.swift */; };
 		86F023AA2BEA615E00FADB50 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F023A92BEA615E00FADB50 /* BaseViewController.swift */; };
 		86F023B12BEA62A600FADB50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F023B02BEA62A600FADB50 /* ViewController.swift */; };
+		86F023B42BEA64B000FADB50 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F023B32BEA64B000FADB50 /* UIColor+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		86DA6BB52BCE086E000FB556 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		86F023A92BEA615E00FADB50 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		86F023B02BEA62A600FADB50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		86F023B32BEA64B000FADB50 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,7 +163,6 @@
 				867660662BCD2F65003B3675 /* LaunchScreen.storyboard */,
 				867660612BCD2F63003B3675 /* Main.storyboard */,
 				867660642BCD2F65003B3675 /* Assets.xcassets */,
-				867660692BCD2F65003B3675 /* Info.plist */,
 				8676605B2BCD2F63003B3675 /* AppDelegate.swift */,
 				8676605D2BCD2F63003B3675 /* SceneDelegate.swift */,
 			);
@@ -226,6 +227,7 @@
 		8676605A2BCD2F63003B3675 /* Sopt-iOS-assignment */ = {
 			isa = PBXGroup;
 			children = (
+				867660692BCD2F65003B3675 /* Info.plist */,
 				86F023AD2BEA620F00FADB50 /* Network */,
 				86F023AB2BEA61A300FADB50 /* Presentation */,
 				864B871F2BDD799400B7F572 /* Application */,
@@ -285,6 +287,7 @@
 				86DA6BB52BCE086E000FB556 /* UITextField+.swift */,
 				86763ECF2BCE1E51009ABF9E /* UIButton+.swift */,
 				864B87352BDE8E9500B7F572 /* UIStackView+.swift */,
+				86F023B32BEA64B000FADB50 /* UIColor+.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				864B87242BDE087600B7F572 /* PosterMovieCell.swift in Sources */,
 				867662BF2BDF4B7300CD0084 /* UIFont+.swift in Sources */,
 				864B86E62BD91F9800B7F572 /* MovieCellType.swift in Sources */,
+				86F023B42BEA64B000FADB50 /* UIColor+.swift in Sources */,
 				864B872F2BDE26ED00B7F572 /* MainMovieCollectionView.swift in Sources */,
 				864B86E02BD8FA6400B7F572 /* MovieBrief.swift in Sources */,
 			);
