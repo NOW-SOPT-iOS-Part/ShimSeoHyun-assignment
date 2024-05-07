@@ -50,7 +50,7 @@ enum BottomTabBarItem: CaseIterable{
     var viewController: UIViewController {
             switch self {
             case .home:
-                return MainViewController()
+                return HomeViewController()
             case .comingsoon:
                 return ViewController(titleText: self.title)
             case .search:
