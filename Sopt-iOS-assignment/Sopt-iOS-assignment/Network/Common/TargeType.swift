@@ -3,7 +3,7 @@ import Foundation
 import Moya
 
 enum MovieTargetType {
-    case mainMovie(request:MovieRequestModel)
+    case mainMovie
     
 }
 
@@ -28,14 +28,14 @@ extension MovieTargetType:TargetType{
     
     var task: Moya.Task {
         switch self{
-        case .mainMovie(let request):
-            return .requestJSONEncodable(request)
+        case .mainMovie:
+            return .requestParameters(parameters: ["key": Config.apiKEY, "targetDt":"20240506","itemPerPage":"10"], encoding: URLEncoding.queryString)
         }
     }
     
     var headers: [String : String]? {
         switch self{
-        case .mainMovie(let request):
+        case .mainMovie:
             return ["Content-Type": "application/json"]
         }
     }

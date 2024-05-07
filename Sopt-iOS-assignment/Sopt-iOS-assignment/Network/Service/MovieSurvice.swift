@@ -11,8 +11,8 @@ final class MovieSurvice{
 
 
 extension MovieSurvice{
-    func signUp(request: MovieRequestModel, completion: @escaping (NetworkResult<Any>) -> Void) {
-        movieProvider.request(.mainMovie(request: request)) { result in
+    func getMainMovie( completion: @escaping (NetworkResult<Any>) -> Void) {
+        movieProvider.request(.mainMovie) { result in
             switch result {
             case .success(let response):
                 print("🫶 memberID는 \(String(describing: response.response?.allHeaderFields["Location"]))")
