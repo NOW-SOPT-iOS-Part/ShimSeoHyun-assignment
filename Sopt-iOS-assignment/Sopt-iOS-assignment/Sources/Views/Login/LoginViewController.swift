@@ -17,7 +17,6 @@ private extension UIStackView {
 
 
 final class LoginViewController: UIViewController, UITextFieldDelegate {
-    private var userInfo : User = User()
     
     // 텍스트 필드가 바뀔 때
     func textFieldDidChangeSelection(_ textField: UITextField) {
@@ -137,8 +136,8 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     // -------로그인 버튼 -------
     @objc private func loginButtonDidTap(){
         let welcomeViewController = WelcomeViewController()
-        userInfo.setId(id: idTextField.text)
-        welcomeViewController.setUser(userInfo: userInfo)
+        Auth.shared.id = idTextField.text
+
         self.navigationController?.pushViewController(welcomeViewController, animated: true)
     }
 
@@ -175,12 +174,9 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     // ---- 닉네임 버튼 ----
     @objc private func nicknameButtonDidTap(){
         let nicknameViewController = NicknameViewController()
-        nicknameViewController.nickname = userInfo.nickname
+
         nicknameViewController.modalPresentationStyle = .formSheet
-        nicknameViewController.completionHandler = { [weak self] nickname in
-            guard let self else { return }
-            userInfo.setNickname(nickname: nickname)
-        }
+
         self.present(nicknameViewController, animated: true)
     }
     
@@ -220,7 +216,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setDelegate() {
-        //UITextFieldDelegate프로토콜을 채택한 LoginViewController가 self
+        // UITextFieldDelegate프로토콜을 채택한 LoginViewController가 self
         idTextField.delegate = self
         pwTextField.delegate = self
     }
@@ -237,6 +233,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     
+    // 레이아웃 정렬
     private func setLayout() {
         [titleLabel, idTextField, pwTextField, loginButton,searchIdButton, searchPwButton,nicknameLabel,nicknameButton].forEach {
             self.view.addSubview($0)

@@ -2,8 +2,6 @@ import UIKit
 
 
 final class NicknameViewController : UIViewController, UITextFieldDelegate{
-    var nickname : String?
-    
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if(!(nicknameTextField.text?.isEmpty ?? true)){
             saveButton.customEnabledButton(bgColor: "red", fontColor: "white")
@@ -12,10 +10,9 @@ final class NicknameViewController : UIViewController, UITextFieldDelegate{
     
 
     private func bindNickname() {
-        guard let nicknameText = nickname else{return}
-        nicknameTextField.text = nicknameText
+        
+        nicknameTextField.text = Auth.shared.nickname
     }
-    
     
     
     private let nicknameLabel : UILabel = {
