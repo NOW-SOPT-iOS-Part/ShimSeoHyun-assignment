@@ -1,14 +1,18 @@
 import UIKit
 
 final class MainMovieCell : UICollectionViewCell, MovieCell{
+    // MARK: - Property
     typealias DataType = MovieBrief
-    
     static var type: MovieCellType = .posterMain
     static var identifier = "MainMovieCell"
     
+    // MARK: - Component
+    private let image =  UIImageView()
+    
+    // MARK: - Life Cycle
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        setLayout()
+        setUI()
     }
     
     @available(*, unavailable)
@@ -16,9 +20,8 @@ final class MainMovieCell : UICollectionViewCell, MovieCell{
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let image =  UIImageView()
-    
-    private func setLayout () {
+    // MARK: - Set UI
+    private func setUI () {
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.layer.cornerRadius = 16
@@ -29,8 +32,18 @@ final class MainMovieCell : UICollectionViewCell, MovieCell{
         }
     }
     
+    // MARK: - Helper
     func dataBind(_ itemData: MovieBrief, itemRow: Int) {
         image.image = UIImage(named: itemData.verticalImg)
     }
+    
+    
+    // MARK: - Action
+    
+    
+    // MARK: - Extension
+    
+    
+    // MARK: - ___ Delegate
 }
 

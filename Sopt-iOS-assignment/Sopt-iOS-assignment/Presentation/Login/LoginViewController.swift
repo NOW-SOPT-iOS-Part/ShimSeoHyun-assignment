@@ -29,7 +29,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // idTextField와 pwTextField 가 둘 다 채워졌을 경우
         if(!(idTextField.text?.isEmpty ?? true) && !(pwTextField.text?.isEmpty ?? true)){
-            loginButton.customEnabledButton(bgColor: "red", fontColor: "white")
+            loginButton.customEnabledButton(bgColor: "main", fontColor: "white")
         }
     }
     

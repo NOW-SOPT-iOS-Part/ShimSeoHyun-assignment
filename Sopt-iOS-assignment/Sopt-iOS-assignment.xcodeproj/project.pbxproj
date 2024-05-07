@@ -42,6 +42,7 @@
 		86F023AA2BEA615E00FADB50 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F023A92BEA615E00FADB50 /* BaseViewController.swift */; };
 		86F023B12BEA62A600FADB50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F023B02BEA62A600FADB50 /* ViewController.swift */; };
 		86F023B42BEA64B000FADB50 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F023B32BEA64B000FADB50 /* UIColor+.swift */; };
+		86F023B62BEA6CEE00FADB50 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F023B52BEA6CEE00FADB50 /* Movie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		86F023A92BEA615E00FADB50 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		86F023B02BEA62A600FADB50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		86F023B32BEA64B000FADB50 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		86F023B52BEA6CEE00FADB50 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				86763ED72BCE56A8009ABF9E /* Auth.swift */,
 				864B86DF2BD8FA6400B7F572 /* MovieBrief.swift */,
 				864B872C2BDE1E4D00B7F572 /* MovieLive.swift */,
+				86F023B52BEA6CEE00FADB50 /* Movie.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				8676605C2BCD2F63003B3675 /* AppDelegate.swift in Sources */,
 				86763ED42BCE3549009ABF9E /* NicknameViewController.swift in Sources */,
 				86763ECE2BCE1052009ABF9E /* WelcomeViewController.swift in Sources */,
+				86F023B62BEA6CEE00FADB50 /* Movie.swift in Sources */,
 				86DA6BB62BCE086E000FB556 /* UITextField+.swift in Sources */,
 				864B86D52BD8C94900B7F572 /* HomeView.swift in Sources */,
 				86763ED82BCE56A8009ABF9E /* Auth.swift in Sources */,

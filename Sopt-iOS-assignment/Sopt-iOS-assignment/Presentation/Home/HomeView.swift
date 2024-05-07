@@ -46,21 +46,21 @@ final class HomeView : UIView  {
         stackView.axis = .vertical
         stackView.spacing = 40
         
-
+        
         for view in
-        [
-            VerticalStackView(subViews: [mainCollectionView,mainCollectionView.navigation], spacingFloat: 16),
-            VerticalStackView(subViews: [mustSeeCollectionView.labelStackView,mustSeeCollectionView], spacingFloat: 12),
-            VerticalStackView(subViews: [popLiveCollectionView.labelStackView,popLiveCollectionView], spacingFloat: 12),
-            VerticalStackView(subViews: [freeCollectionView.labelStackView,freeCollectionView], spacingFloat: 12),
-            VerticalStackView(subViews: [userCollectionView.labelStackView,userCollectionView], spacingFloat: 12),
-        ]
+                [
+                    VerticalStackView(subViews: [mainCollectionView,mainCollectionView.navigation], spacingFloat: 16),
+                    VerticalStackView(subViews: [mustSeeCollectionView.labelStackView,mustSeeCollectionView], spacingFloat: 12),
+                    VerticalStackView(subViews: [popLiveCollectionView.labelStackView,popLiveCollectionView], spacingFloat: 12),
+                    VerticalStackView(subViews: [freeCollectionView.labelStackView,freeCollectionView], spacingFloat: 12),
+                    VerticalStackView(subViews: [userCollectionView.labelStackView,userCollectionView], spacingFloat: 12),
+                ]
         {
             stackView.addArrangedSubview(view) // 배열의 각 요소를 스택뷰에 추가
         }
         
         self.addSubview(scrollView)
-
+        
         scrollView.snp.makeConstraints{
             $0.edges.equalTo(self.safeAreaLayoutGuide)
         }
@@ -83,6 +83,6 @@ final class HomeView : UIView  {
     
     
     // MARK: - ___ Delegate
-
+    
 }
 

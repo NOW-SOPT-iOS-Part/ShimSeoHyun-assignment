@@ -15,10 +15,7 @@ extension UIColor {
    @nonobjc static var black: UIColor {
       return UIColor(fromHex: "000000", alpha: 1.0)
    }
-   @nonobjc static var white: UIColor {
-      return UIColor(fromHex: "ffffff", alpha: 1.0)
-   }
-   @nonobjc static var red: UIColor {
+   @nonobjc static var main: UIColor {
       return UIColor(fromHex: "FF143C", alpha: 1.0)
    }
    @nonobjc static var grey1: UIColor {

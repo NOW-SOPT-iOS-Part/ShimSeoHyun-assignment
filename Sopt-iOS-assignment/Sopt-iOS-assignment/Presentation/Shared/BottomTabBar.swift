@@ -48,25 +48,25 @@ enum BottomTabBarItem: CaseIterable{
     }
     
     var viewController: UIViewController {
-            switch self {
-            case .home:
-                return HomeViewController()
-            case .comingsoon:
-                return ViewController(titleText: self.title)
-            case .search:
-                return ViewController(titleText: self.title)
-            case .download:
-                return ViewController(titleText: self.title)
-            case .history:
-                return ViewController(titleText: self.title)
-            }
+        switch self {
+        case .home:
+            return HomeViewController()
+        case .comingsoon:
+            return ViewController(titleText: self.title)
+        case .search:
+            return ViewController(titleText: self.title)
+        case .download:
+            return ViewController(titleText: self.title)
+        case .history:
+            return ViewController(titleText: self.title)
         }
-
+    }
+    
     
     var tabBarItem: UITabBarItem {
         let icon = UIImage(named:"icon_bottomTabBar_" + String(describing: self))
         return UITabBarItem(title: self.title, image: icon, tag: self.hashValue)
     }
 }
-    
+
 

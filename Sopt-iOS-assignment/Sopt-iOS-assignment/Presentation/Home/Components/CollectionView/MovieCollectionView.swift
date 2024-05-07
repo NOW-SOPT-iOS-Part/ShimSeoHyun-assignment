@@ -1,12 +1,35 @@
 import UIKit
 
 class MovieCollectionView<T : MovieCell>:UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource{
+    // MARK: - Property
     var itemData: [T.DataType] = []{
         didSet{
             updateItemData()
         }
     }
     
+    // MARK: - Component
+    var labelStackView : UIStackView = {
+        let label = UILabel()
+        label.textColor = .white
+        
+        let more = UILabel()
+        more.text = "전체보기"
+        
+        let stackView = UIStackView()
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        
+        stackView.addArrangedSubview(label)
+        stackView.addArrangedSubview(more)
+        
+        stackView.axis = .horizontal
+        
+        return stackView
+    }()
+    
+    
+    // MARK: - Life Cycle
     init(labelText: String) {
         super.init(frame: .zero, collectionViewLayout:UICollectionViewFlowLayout())
         self.backgroundColor = .none
@@ -28,6 +51,10 @@ class MovieCollectionView<T : MovieCell>:UICollectionView, UICollectionViewDeleg
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Set UI
+    
+    
+    // MARK: - Helper
     func setFlowLayout() {
         let flowLayout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
@@ -53,30 +80,13 @@ class MovieCollectionView<T : MovieCell>:UICollectionView, UICollectionViewDeleg
     
     func updateItemData(){}
     
-    // UI
-    var labelStackView : UIStackView = {
-        let label = UILabel()
-        label.textColor = .white
-        
-        let more = UILabel()
-        more.text = "전체보기"
-        
-        let stackView = UIStackView()
-        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        stackView.isLayoutMarginsRelativeArrangement = true
-        
-        stackView.addArrangedSubview(label)
-        stackView.addArrangedSubview(more)
-        
-        stackView.axis = .horizontal
-        
-        return stackView
-    }()
+    // MARK: - Action
     
     
-
-    // delegate
+    // MARK: - Extension
     
+    
+    // MARK: - ___ Delegate
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return itemData.count
     }

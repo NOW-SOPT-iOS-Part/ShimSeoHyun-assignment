@@ -4,7 +4,7 @@ import UIKit
 final class NicknameViewController : UIViewController, UITextFieldDelegate{
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if(!(nicknameTextField.text?.isEmpty ?? true)){
-            saveButton.customEnabledButton(bgColor: "red", fontColor: "white")
+            saveButton.customEnabledButton(bgColor: "main", fontColor: "white")
         }
     }
     
