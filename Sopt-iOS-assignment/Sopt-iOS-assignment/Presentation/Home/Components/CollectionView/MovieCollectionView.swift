@@ -5,6 +5,7 @@ class MovieCollectionView<T : MovieCell>:UICollectionView, UICollectionViewDeleg
     var itemData: [T.DataType] = []{
         didSet{
             updateItemData()
+            print(self)
         }
     }
     
@@ -78,7 +79,7 @@ class MovieCollectionView<T : MovieCell>:UICollectionView, UICollectionViewDeleg
         self.register(T.self, forCellWithReuseIdentifier: T.self.identifier)
     }
     
-    func updateItemData(){}
+    func updateItemData(){self.reloadData()}
     
     // MARK: - Action
     

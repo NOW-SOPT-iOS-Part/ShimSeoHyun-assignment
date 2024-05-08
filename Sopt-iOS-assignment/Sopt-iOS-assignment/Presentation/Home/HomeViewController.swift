@@ -4,6 +4,7 @@ import UIKit
 final class HomeViewController : UIViewController, UICollectionViewDelegate{
     // MARK: - Property
     private let rootView = HomeView()
+    private var mainCollectionViewDataList: [MovieBrief] = []
     
     
     // MARK: - Component
@@ -30,7 +31,11 @@ final class HomeViewController : UIViewController, UICollectionViewDelegate{
             
         case .success(let data):
             guard let data = data as? MovieResponseModel else { return }
-                            dump(data)
+            let movieList = data.boxOfficeResult.dailyBoxOfficeList
+
+            self!.rootView.mustSeeCollectionView.itemData = movieList.map { item in
+                MovieBrief(id: item.rnum, title: item.movieNm, description: item.movieCd)
+            }
         case .requestErr:
             print("요청 오류 입니다")
         case .decodedErr:
@@ -43,8 +48,7 @@ final class HomeViewController : UIViewController, UICollectionViewDelegate{
             print("네트워크 오류입니다")
         }}
         
-        rootView.mainCollectionView.itemData =  [movieBriefList[0],movieBriefList[2],movieBriefList[1],movieBriefList[3],movieBriefList[0],movieBriefList[2],movieBriefList[1],movieBriefList[3]]
-        rootView.mustSeeCollectionView.itemData = [movieBriefList[1],movieBriefList[2],movieBriefList[0],movieBriefList[3]]
+        rootView.mainCollectionView.itemData = [movieBriefList[1],movieBriefList[2],movieBriefList[0],movieBriefList[3]]
         rootView.popLiveCollectionView.itemData = MovieLiveList
         rootView.freeCollectionView.itemData = [movieBriefList[1],movieBriefList[2],movieBriefList[3],movieBriefList[0]]
         rootView.userCollectionView.itemData = [movieBriefList[3],movieBriefList[1],movieBriefList[0],movieBriefList[2]]
