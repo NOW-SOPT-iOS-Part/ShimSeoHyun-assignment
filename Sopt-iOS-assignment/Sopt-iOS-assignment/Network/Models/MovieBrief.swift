@@ -9,6 +9,10 @@ struct MovieBrief{
     
     var tivingType : EnumMovieTivingType = .none
     var notice : [EnumMovieNotice] = []
+    
+    mutating func setBannerImg(newImg:String){
+        self.bannerImg = newImg
+    }
 
 }
 

@@ -1,9 +1,7 @@
 import Foundation
 
-struct MovieRequestModel:Codable{
-    var key : String = Config.apiKEY
-    let itmePerPage : Int
-    let targetDt : Int
+struct MovieResponseModel: Codable {
+    let boxOfficeResult: BoxOfficeResult
 }
 
 struct BoxOfficeResult: Codable {
@@ -33,6 +31,4 @@ struct DailyBoxOffice: Codable {
     let showCnt: String
 }
 
-struct MovieResponseModel: Codable {
-    let boxOfficeResult: BoxOfficeResult
-}
+

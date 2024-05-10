@@ -2,23 +2,24 @@ import Foundation
 
 import Moya
 
-final class MovieSurvice{
-    static let shared = MovieSurvice()
-    private var movieProvider = MoyaProvider<MovieTargetType>(plugins:[MoyaLoggingPlugin()])
+final class MovieDetailSurvice{
+    static let shared = MovieDetailSurvice()
+    private var movieDetailProvider = MoyaProvider<MovieTargetType>(plugins:[MoyaLoggingPlugin()])
     
     private init(){}
 }
 
 
-extension MovieSurvice{
-    func getMainMovie( completion: @escaping (NetworkResult<Any>) -> Void) {
-        movieProvider.request(.mainMovie) { result in
+extension MovieDetailSurvice{
+    func getMovieDetail(title:String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        movieDetailProvider.request(.movieDetail(title: title)) { result in
             switch result {
             case .success(let response):
+                
                 let statusCode = response.statusCode
                 let data = response.data
                 
-                let networkResult = self.judgeStatus(by: statusCode, data, MovieResponseModel.self)
+                let networkResult = self.judgeStatus(by: statusCode, data, MovieDetailResponseModel.self)
                 completion(networkResult)
                 
             case .failure:

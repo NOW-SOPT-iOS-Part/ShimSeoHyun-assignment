@@ -31,11 +31,47 @@ final class HomeViewController : UIViewController, UICollectionViewDelegate{
             
         case .success(let data):
             guard let data = data as? MovieResponseModel else { return }
-            let movieList = data.boxOfficeResult.dailyBoxOfficeList
+            let movieBriefList = data.boxOfficeResult.dailyBoxOfficeList
 
-            self!.rootView.mustSeeCollectionView.itemData = movieList.map { item in
-                MovieBrief(id: item.rnum, title: item.movieNm, description: item.movieCd)
+            
+            var movieList = [MovieBrief]()
+            movieBriefList.map{ item in
+                MovieDetailSurvice.shared.getMovieDetail(title: item.movieNm){[weak self] response in switch response{
+                    
+                case .success(let data):
+                    guard let data = data as? MovieDetailResponseModel else { return }
+                    let movieDetialList = data.data
+                    
+                    var images = [String]()
+                    images = movieDetialList[0].result[0].posters.split(separator: "|").map { String($0)}
+                    
+                    var imageURL = String()
+                    if(images.isEmpty){
+                        imageURL = "http://file.koreafilm.or.kr/thm/02/99/18/36/tn_DPF028945.jpg"
+                    }
+                    else{
+                        imageURL = images[0]
+                    }
+                    
+                    movieList.append( MovieBrief(id: item.rnum, title: item.movieNm, description: item.movieCd, bannerImg:imageURL))
+                    self?.rootView.mustSeeCollectionView.itemData = movieList
+                    
+                case .requestErr:
+                    print("디테일 요청 오류 입니다")
+                case .decodedErr:
+                    print("디테일 디코딩 오류 입니다")
+                case .pathErr:
+                    print("디테일 경로 오류 입니다")
+                case .serverErr:
+                    print("디테일 서버 오류입니다")
+                case .networkFail:
+                    print("디테일 네트워크 오류입니다")
+                }}
             }
+
+            
+            
+            
         case .requestErr:
             print("요청 오류 입니다")
         case .decodedErr:
@@ -47,7 +83,7 @@ final class HomeViewController : UIViewController, UICollectionViewDelegate{
         case .networkFail:
             print("네트워크 오류입니다")
         }}
-        
+
         rootView.mainCollectionView.itemData = [movieBriefList[1],movieBriefList[2],movieBriefList[0],movieBriefList[3]]
         rootView.popLiveCollectionView.itemData = MovieLiveList
         rootView.freeCollectionView.itemData = [movieBriefList[1],movieBriefList[2],movieBriefList[3],movieBriefList[0]]

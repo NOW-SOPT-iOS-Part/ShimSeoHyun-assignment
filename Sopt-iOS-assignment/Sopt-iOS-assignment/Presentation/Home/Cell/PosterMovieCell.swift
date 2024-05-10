@@ -44,7 +44,13 @@ final class PosterMovieCell : UICollectionViewCell, MovieCell{
     
     func dataBind(_ itemData: MovieBrief, itemRow: Int) {
         titleLabel.attributedText = Font.B2.style(text:itemData.title)
-        image.image = UIImage(named: itemData.verticalImg)
+//        image.image = UIImage(named: itemData.verticalImg)
+        let url = URL(string: itemData.bannerImg)
+        print("----")
+              print(itemData.bannerImg)
+        print("----")
+
+        image.load(url: url!)
         
     }
 }

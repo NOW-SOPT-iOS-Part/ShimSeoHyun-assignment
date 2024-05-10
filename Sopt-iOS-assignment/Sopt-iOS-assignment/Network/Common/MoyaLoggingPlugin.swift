@@ -1,4 +1,3 @@
-import UIKit
 
 import Moya
 
@@ -44,11 +43,11 @@ final class MoyaLoggingPlugin: PluginType {
         log.append("Status Code: [\(statusCode)]\n")
         log.append("URL: \(url)\n")
         log.append("response: \n")
-        if let reString = String(bytes: response.data, encoding: String.Encoding.utf8) {
-            log.append("4️⃣\(reString)\n")
-        }
-        log.append("------------------- END HTTP -------------------")
-        print(log)
+//        if let reString = String(bytes: response.data, encoding: String.Encoding.utf8) {
+//            log.append("4️⃣\(reString)\n")
+//        }
+//        log.append("------------------- END HTTP -------------------")
+//        print(log)
     }
 
     func onFail(_ error: MoyaError, target: TargetType) {
