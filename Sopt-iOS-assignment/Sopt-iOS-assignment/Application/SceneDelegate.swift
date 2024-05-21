@@ -14,18 +14,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // windowScene을 기반으로 새로운 UIWindow 객체를 생성하고 window에 할당합니다.
         self.window = UIWindow(windowScene: windowScene)
-    
+        
         // LoginViewController를 루트 뷰 컨트롤러로 갖는 UINavigationController 객체를 생성
         // UINavigationController는 여러 뷰 컨트롤러를 스택처럼 관리하며, 상단의 뷰 컨트롤러를 표시
-        let navigationController = UINavigationController(rootViewController: LoginViewController())
+        //        let navigationController = UINavigationController(rootViewController: LoginViewController())
+        //        
+        //        self.window?.rootViewController = navigationController
+        //        window?.rootViewController = LoginViewController()
         
-        self.window?.rootViewController = navigationController
-
+        let tabBarVC = BottomTabBar()
         
-//        let tabBarVC = BottomTabBar()
+        window?.rootViewController = tabBarVC
         
-//        window?.rootViewController = tabBarVC
-//        window?.rootViewController = LoginViewController()
         window?.makeKeyAndVisible()
     }
 }
