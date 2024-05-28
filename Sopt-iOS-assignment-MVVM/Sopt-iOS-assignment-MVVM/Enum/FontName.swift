@@ -9,4 +9,3 @@ enum FontName: String {
     case SemiBold = "PretendardVariable-SemiBold"
     case Medium = "PretendardVariable-Medium"
 }
-

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 /// 모든 UIViewController는 BaseViewController를 상속 받는다.
 /// - render랑 configUI를 override하여 각 VC에 맞게 함수 내용을 작성한다.
@@ -34,6 +35,8 @@ class BaseViewController: UIViewController {
 
         setLayout()
         setStyle()
+        
+        bindViewModel()
     }
 
     // MARK: - Set UI
@@ -41,4 +44,8 @@ class BaseViewController: UIViewController {
     func setLayout() { }
 
     func setStyle() { }
+    
+    // MARK: - Helper
+    
+    func bindViewModel() {}
 }

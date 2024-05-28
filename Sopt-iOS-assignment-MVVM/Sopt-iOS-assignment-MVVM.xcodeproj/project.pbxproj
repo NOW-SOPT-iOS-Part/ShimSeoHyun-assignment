@@ -10,10 +10,6 @@
 		865F47BC2C045687006F183E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F47BB2C045687006F183E /* AppDelegate.swift */; };
 		865F47BE2C045687006F183E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F47BD2C045687006F183E /* SceneDelegate.swift */; };
 		865F47C52C045689006F183E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 865F47C42C045689006F183E /* Assets.xcassets */; };
-		865F47C82C045689006F183E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 865F47C72C045689006F183E /* Base */; };
-		865F47D32C045689006F183E /* Sopt_iOS_assignment_MVVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F47D22C045689006F183E /* Sopt_iOS_assignment_MVVMTests.swift */; };
-		865F47DD2C045689006F183E /* Sopt_iOS_assignment_MVVMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F47DC2C045689006F183E /* Sopt_iOS_assignment_MVVMUITests.swift */; };
-		865F47DF2C045689006F183E /* Sopt_iOS_assignment_MVVMUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F47DE2C045689006F183E /* Sopt_iOS_assignment_MVVMUITestsLaunchTests.swift */; };
 		865F47EE2C045816006F183E /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 865F47ED2C045816006F183E /* .swiftlint.yml */; };
 		865F47F12C045878006F183E /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 865F47F02C045878006F183E /* Then */; };
 		865F47F42C045883006F183E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 865F47F32C045883006F183E /* SnapKit */; };
@@ -27,6 +23,13 @@
 		865F480C2C045D1E006F183E /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F480B2C045D1E006F183E /* UILabel+.swift */; };
 		865F48102C045DC3006F183E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F480F2C045DC3006F183E /* LoginViewController.swift */; };
 		865F48132C045DFC006F183E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F48122C045DFC006F183E /* BaseViewController.swift */; };
+		865F48182C046838006F183E /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F48172C046838006F183E /* UIView+.swift */; };
+		865F481B2C049CF3006F183E /* Pretendard.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 865F48022C045922006F183E /* Pretendard.ttf */; };
+		865F481E2C04AC65006F183E /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F481D2C04AC65006F183E /* UserRepository.swift */; };
+		865F48212C04ACBC006F183E /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F48202C04ACBC006F183E /* ProfileModel.swift */; };
+		865F48232C04ACCB006F183E /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F48222C04ACCB006F183E /* AuthModel.swift */; };
+		865F48252C04C79B006F183E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F48242C04C79B006F183E /* LoginViewModel.swift */; };
+		865F48272C04C7AE006F183E /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865F48262C04C7AE006F183E /* BaseViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,10 +57,7 @@
 		865F47C72C045689006F183E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		865F47C92C045689006F183E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		865F47CE2C045689006F183E /* Sopt-iOS-assignment-MVVMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sopt-iOS-assignment-MVVMTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		865F47D22C045689006F183E /* Sopt_iOS_assignment_MVVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sopt_iOS_assignment_MVVMTests.swift; sourceTree = "<group>"; };
 		865F47D82C045689006F183E /* Sopt-iOS-assignment-MVVMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sopt-iOS-assignment-MVVMUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		865F47DC2C045689006F183E /* Sopt_iOS_assignment_MVVMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sopt_iOS_assignment_MVVMUITests.swift; sourceTree = "<group>"; };
-		865F47DE2C045689006F183E /* Sopt_iOS_assignment_MVVMUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sopt_iOS_assignment_MVVMUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		865F47ED2C045816006F183E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		865F48022C045922006F183E /* Pretendard.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Pretendard.ttf; path = "../../../../Sopt-iOS-assignment/Sopt-iOS-assignment/Resources/Fonts/Pretendard.ttf"; sourceTree = "<group>"; };
 		865F48042C045A09006F183E /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
@@ -66,6 +66,12 @@
 		865F480B2C045D1E006F183E /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		865F480F2C045DC3006F183E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		865F48122C045DFC006F183E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		865F48172C046838006F183E /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		865F481D2C04AC65006F183E /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		865F48202C04ACBC006F183E /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		865F48222C04ACCB006F183E /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
+		865F48242C04C79B006F183E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		865F48262C04C7AE006F183E /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +110,6 @@
 			children = (
 				865F47ED2C045816006F183E /* .swiftlint.yml */,
 				865F47BA2C045687006F183E /* Sopt-iOS-assignment-MVVM */,
-				865F47D12C045689006F183E /* Sopt-iOS-assignment-MVVMTests */,
-				865F47DB2C045689006F183E /* Sopt-iOS-assignment-MVVMUITests */,
 				865F47B92C045687006F183E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -123,6 +127,8 @@
 		865F47BA2C045687006F183E /* Sopt-iOS-assignment-MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				865F481F2C04AC9C006F183E /* Model */,
+				865F481C2C04AC52006F183E /* Repository */,
 				865F47C92C045689006F183E /* Info.plist */,
 				865F48112C045DE7006F183E /* Base */,
 				865F480D2C045DAE006F183E /* Presentation */,
@@ -132,23 +138,6 @@
 				865F47FF2C0458CD006F183E /* Application */,
 			);
 			path = "Sopt-iOS-assignment-MVVM";
-			sourceTree = "<group>";
-		};
-		865F47D12C045689006F183E /* Sopt-iOS-assignment-MVVMTests */ = {
-			isa = PBXGroup;
-			children = (
-				865F47D22C045689006F183E /* Sopt_iOS_assignment_MVVMTests.swift */,
-			);
-			path = "Sopt-iOS-assignment-MVVMTests";
-			sourceTree = "<group>";
-		};
-		865F47DB2C045689006F183E /* Sopt-iOS-assignment-MVVMUITests */ = {
-			isa = PBXGroup;
-			children = (
-				865F47DC2C045689006F183E /* Sopt_iOS_assignment_MVVMUITests.swift */,
-				865F47DE2C045689006F183E /* Sopt_iOS_assignment_MVVMUITestsLaunchTests.swift */,
-			);
-			path = "Sopt-iOS-assignment-MVVMUITests";
 			sourceTree = "<group>";
 		};
 		865F47FF2C0458CD006F183E /* Application */ = {
@@ -183,6 +172,7 @@
 			children = (
 				865F48042C045A09006F183E /* UIFont+.swift */,
 				865F480B2C045D1E006F183E /* UILabel+.swift */,
+				865F48172C046838006F183E /* UIView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -208,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				865F480F2C045DC3006F183E /* LoginViewController.swift */,
+				865F48242C04C79B006F183E /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -216,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				865F48122C045DFC006F183E /* BaseViewController.swift */,
+				865F48262C04C7AE006F183E /* BaseViewModel.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -228,6 +220,23 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		865F481C2C04AC52006F183E /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				865F481D2C04AC65006F183E /* UserRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		865F481F2C04AC9C006F183E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				865F48202C04ACBC006F183E /* ProfileModel.swift */,
+				865F48222C04ACCB006F183E /* AuthModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -238,7 +247,7 @@
 				865F47B42C045687006F183E /* Sources */,
 				865F47B52C045687006F183E /* Frameworks */,
 				865F47B62C045687006F183E /* Resources */,
-				865F47EB2C0457E3006F183E /* ShellScript */,
+				865F48162C04675A006F183E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -347,9 +356,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				865F481B2C049CF3006F183E /* Pretendard.ttf in Resources */,
 				865F47EE2C045816006F183E /* .swiftlint.yml in Resources */,
 				865F47C52C045689006F183E /* Assets.xcassets in Resources */,
-				865F47C82C045689006F183E /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,7 +379,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		865F47EB2C0457E3006F183E /* ShellScript */ = {
+		865F48162C04675A006F183E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -385,7 +394,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nif test -d \"$HOME/.mint/bin\"; then\n  PATH=\"$HOME/.mint/bin:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, run setup.sh (or download from https://github.com/realm/SwiftLint)\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -397,11 +406,17 @@
 				865F48102C045DC3006F183E /* LoginViewController.swift in Sources */,
 				865F48052C045A09006F183E /* UIFont+.swift in Sources */,
 				865F480C2C045D1E006F183E /* UILabel+.swift in Sources */,
+				865F48272C04C7AE006F183E /* BaseViewModel.swift in Sources */,
 				865F47BC2C045687006F183E /* AppDelegate.swift in Sources */,
 				865F480A2C045BD7006F183E /* FontName.swift in Sources */,
+				865F48232C04ACCB006F183E /* AuthModel.swift in Sources */,
 				865F48132C045DFC006F183E /* BaseViewController.swift in Sources */,
+				865F48182C046838006F183E /* UIView+.swift in Sources */,
+				865F48252C04C79B006F183E /* LoginViewModel.swift in Sources */,
 				865F47BE2C045687006F183E /* SceneDelegate.swift in Sources */,
+				865F481E2C04AC65006F183E /* UserRepository.swift in Sources */,
 				865F48082C045B4F006F183E /* FontStyle.swift in Sources */,
+				865F48212C04ACBC006F183E /* ProfileModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,7 +424,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				865F47D32C045689006F183E /* Sopt_iOS_assignment_MVVMTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,8 +431,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				865F47DD2C045689006F183E /* Sopt_iOS_assignment_MVVMUITests.swift in Sources */,
-				865F47DF2C045689006F183E /* Sopt_iOS_assignment_MVVMUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,6 +588,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3Y6FWGNU3J;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Sopt-iOS-assignment-MVVM/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -603,6 +616,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3Y6FWGNU3J;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Sopt-iOS-assignment-MVVM/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
