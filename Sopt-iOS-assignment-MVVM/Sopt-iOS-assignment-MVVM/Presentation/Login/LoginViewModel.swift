@@ -15,10 +15,12 @@ final class LoginViewModel: BaseViewModel {
     struct Input {
         let idTextFieldDidChangeEvent: Observable<String?>
         let pwTextFieldDidChangeEvent: Observable<String?>
+        let loginButtonDidTapEvent: Observable<Void>
     }
     
     struct Output {
         var isLoginButtonEnabled = BehaviorRelay<Bool>(value: false)
+        var isLogined = PublishRelay<Void>()
     }
     
     func transform(from input: Input, disposeBag: DisposeBag) -> Output {
@@ -30,6 +32,10 @@ final class LoginViewModel: BaseViewModel {
             }
             .bind(to: output.isLoginButtonEnabled)
             .disposed(by: disposeBag)
+        
+        input.loginButtonDidTapEvent.subscribe(onNext: { _ in
+            output.isLogined.accept(Void())
+        }).disposed(by: disposeBag)
         
         print("TransForm")
         

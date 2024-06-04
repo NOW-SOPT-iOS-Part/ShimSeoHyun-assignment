@@ -80,7 +80,9 @@ final class LoginViewController: BaseViewController {
     override func bindViewModel() {
         let input = LoginViewModel.Input(
             idTextFieldDidChangeEvent: idTextField.rx.text.asObservable(),
-            pwTextFieldDidChangeEvent: pwTextField.rx.text.asObservable()
+            pwTextFieldDidChangeEvent: pwTextField.rx.text.asObservable(),
+            loginButtonDidTapEvent:
+                loginButton.rx.tap.asObservable()
         )
         
         let output = viewModel.transform(from: input, disposeBag: disposeBag)
@@ -90,7 +92,12 @@ final class LoginViewController: BaseViewController {
                 self?.updateLoginButton(isEnabled)
             })
             .disposed(by: disposeBag)
-                    
+        
+        input.loginButtonDidTapEvent
+            .subscribe(onNext: { [weak self] _ in
+                self?.pushToWelcomeVC()
+            })
+            .disposed(by: disposeBag)
     }
     
     func updateLoginButton(_ isEnabled: Bool) {
@@ -103,12 +110,16 @@ final class LoginViewController: BaseViewController {
         if let attributedTitle = UILabel.createAttributedText(for: .name1, withText: "로그인하기", color: titleColor) {
             self.loginButton.setAttributedTitle(attributedTitle, for: .normal)
         }
-        
         loginButton.isEnabled = isEnabled
     }
     
-    // MARK: - Action
+    private func pushToWelcomeVC() {
+        let welcomeViewController = BaseViewController()
+        self.navigationController?.pushViewController(welcomeViewController, animated: true)
+    }
     
+    // MARK: - Action
+     
 }
 
 // MARK: - Extension
