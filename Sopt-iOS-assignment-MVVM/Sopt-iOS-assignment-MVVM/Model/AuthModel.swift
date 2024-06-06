@@ -7,10 +7,13 @@
 
 import Foundation
 
+import RxSwift
+import RxRelay
+
 struct ProfileModel {
-    static let shared = ProfileModel()
+    static var shared = ProfileModel()
     
-    var userId: String = ""
+    let userID = BehaviorRelay<String>(value: "")
     var nickName: String = ""
     var email: String = ""
     

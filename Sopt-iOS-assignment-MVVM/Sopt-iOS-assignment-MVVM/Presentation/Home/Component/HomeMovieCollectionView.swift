@@ -7,8 +7,16 @@
 
 import UIKit
 
-class HomeCollectionView<Cell: BaseCollectionViewCell>: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
+import RxSwift
+import RxRelay
+
+class HomeMovieCollectionView<Cell: MovieCell>:
+    UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
     // MARK: - Property
+    
+    private let disposeBag = DisposeBag()
+    
+    let itemData = BehaviorRelay<[Cell.DataType]>(value: [])
     
     // MARK: - Component
     
@@ -17,6 +25,11 @@ class HomeCollectionView<Cell: BaseCollectionViewCell>: UICollectionView, UIColl
     init() {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         self.backgroundColor = .none
+        
+        itemData.subscribe(
+            onNext: { [weak self] _ in
+                self?.updateItemData() }
+        ).disposed(by: disposeBag)
         
         setFlowLayout()
         setDelegate()
@@ -33,16 +46,16 @@ class HomeCollectionView<Cell: BaseCollectionViewCell>: UICollectionView, UIColl
     
     private func setLayout() {
         self.snp.makeConstraints {
-            $0.height.equalTo(50)
+            $0.height.equalTo(Cell.type.getCGSize().height)
         }
     }
     
-    private func setFlowLayout() {
+    func setFlowLayout() {
         let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout().then {
             $0.scrollDirection = .horizontal
             $0.minimumLineSpacing = 8
             $0.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-            $0.itemSize = CGSize(width: 50, height: 50)
+            $0.itemSize = Cell.type.getCGSize()
         }
         self.collectionViewLayout = flowLayout
     }
@@ -54,6 +67,8 @@ class HomeCollectionView<Cell: BaseCollectionViewCell>: UICollectionView, UIColl
         self.delegate = self
     }
     
+    func updateItemData() { self.reloadData() }
+    
     // MARK: - Action
     
     // MARK: - Extension
@@ -61,13 +76,17 @@ class HomeCollectionView<Cell: BaseCollectionViewCell>: UICollectionView, UIColl
     // MARK: - ___ Delegate
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return itemData.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //        let itemData = itemData
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: Cell.className), for: indexPath) as! Cell
-        //        cell.dataBind(itemData[indexPath.item], itemRow: indexPath.item)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell.className, for: indexPath) as! Cell
+        
+        
+        let data = itemData.value[indexPath.row]
+        cell.DataBind(data, num: indexPath.row)
+        
+        
         return cell
     }
     

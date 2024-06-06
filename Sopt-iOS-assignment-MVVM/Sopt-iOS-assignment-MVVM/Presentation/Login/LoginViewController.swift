@@ -28,7 +28,9 @@ final class LoginViewController: BaseViewController {
     
     lazy var idTextField = self.createLoginTextField(placeHolder: "아이디")
     
-    lazy var pwTextField = self.createLoginTextField(placeHolder: "비밀번호")
+    lazy var pwTextField = self.createLoginTextField(placeHolder: "비밀번호").then {
+        $0.isSecureTextEntry = true
+    }
     
     lazy var loginButton = UIButton().then {
         if let attributedTitle = UILabel.createAttributedText(for: .name1, withText: "로그인하기", color: .white) {
@@ -42,6 +44,12 @@ final class LoginViewController: BaseViewController {
     // MARK: - Init
     
     // MARK: - Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        idTextField.delegate = self
+        pwTextField.delegate = self
+    }
     
     // MARK: - Set UI
     
@@ -70,19 +78,14 @@ final class LoginViewController: BaseViewController {
             $0.leading.trailing.equalToSuperview().inset(20)
         }
     }
-    
-    override func setStyle() {
-        view.backgroundColor = .black
-    }
-    
+
     // MARK: - Helper
     
     override func bindViewModel() {
         let input = LoginViewModel.Input(
-            idTextFieldDidChangeEvent: idTextField.rx.text.asObservable(),
-            pwTextFieldDidChangeEvent: pwTextField.rx.text.asObservable(),
-            loginButtonDidTapEvent:
-                loginButton.rx.tap.asObservable()
+            onChangeIdTextField: idTextField.rx.text.asObservable(),
+            onChangePwTextField: pwTextField.rx.text.asObservable(),
+            onDidTabLoginButton: loginButton.rx.tap.asObservable()
         )
         
         let output = viewModel.transform(from: input, disposeBag: disposeBag)
@@ -93,7 +96,7 @@ final class LoginViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        input.loginButtonDidTapEvent
+        output.isLogined
             .subscribe(onNext: { [weak self] _ in
                 self?.pushToWelcomeVC()
             })
@@ -114,12 +117,15 @@ final class LoginViewController: BaseViewController {
     }
     
     private func pushToWelcomeVC() {
-        let welcomeViewController = BaseViewController()
-        self.navigationController?.pushViewController(welcomeViewController, animated: true)
+        guard let window = self.view.window else { return }
+        
+        let mainViewController = BottomTabBar()
+        window.rootViewController = mainViewController
+        window.makeKeyAndVisible()
     }
     
     // MARK: - Action
-     
+    
 }
 
 // MARK: - Extension
@@ -130,6 +136,8 @@ extension LoginViewController {
             $0.backgroundColor = .gray4
             
             $0.attributedPlaceholder = UILabel.createAttributedText(for: .name1, withText: placeHolder, color: .gray2)
+            
+            $0.layer.borderColor = UIColor.gray2.cgColor
             
             $0.typingAttributes = [
                 .font: UIFont.pretendard(for: .name1) as Any,
@@ -148,4 +156,14 @@ extension LoginViewController {
         return textField
     }
 }
+
 // MARK: - ___ Delegate
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderWidth = 1.0
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderWidth = 0.0
+    }
+}

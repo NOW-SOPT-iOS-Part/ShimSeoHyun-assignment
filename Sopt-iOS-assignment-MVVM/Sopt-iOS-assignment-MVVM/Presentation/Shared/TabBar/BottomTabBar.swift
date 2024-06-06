@@ -7,8 +7,8 @@
 
 import UIKit
 
-final class BottomTabBar : UITabBarController{
-    override func viewDidLoad(){
+final class BottomTabBar: UITabBarController {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         // Enum의 모든 케이스를 가져오기 위해 CaseIterable을 사용
@@ -31,7 +31,7 @@ final class BottomTabBar : UITabBarController{
     }
 }
 
-enum BottomTabBarItem: CaseIterable{
+enum BottomTabBarItem: CaseIterable {
     case home
     case comingsoon
     case search
@@ -69,7 +69,7 @@ enum BottomTabBarItem: CaseIterable{
     }
     
     var tabBarItem: UITabBarItem {
-        let icon = UIImage(named: "icon_bottomTabBar_" + String(describing: self))
+        let icon = UIImage(named: "Icon_BottomTabBar_" + String(describing: self))
         return UITabBarItem(title: self.title, image: icon, tag: self.hashValue)
     }
 }

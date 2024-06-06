@@ -31,4 +31,6 @@ class BaseCollectionViewCell: UICollectionViewCell {
     func setLayout() { }
 
     func setStyle() { }
+    
+    // MARK: - Helper
 }
