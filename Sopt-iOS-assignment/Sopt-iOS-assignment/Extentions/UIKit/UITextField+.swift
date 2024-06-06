@@ -20,6 +20,7 @@ extension UITextField {
         layer.borderColor = UIColor(named: placeholderFontColor!)?.cgColor
         leftView = UIView(frame: CGRect(x: 0, y: 0, width: 22, height: 0))
         leftViewMode = .always
+        layer.cornerRadius = 3
         
         font = UIFont(name: "PretendardVariable-SemiBold", size: 15)
         textColor = UIColor(named: fontColor!)
